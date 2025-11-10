@@ -8,7 +8,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const multer = require('multer');
 // Bỏ require path và fs vì không còn lưu file cục bộ nữa
-// const path = require('path');
+const path = require('path');
 // const fs = require('fs'); 
 
 const app = express();
