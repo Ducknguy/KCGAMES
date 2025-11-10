@@ -1,3 +1,11 @@
+body {
+    background-image: url(../Image/background-tuyendung1.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 #main_page {
     width: 100%;
     margin-top: 150px;
@@ -36,6 +44,8 @@
     align-items: center;
     justify-items: center;
     height: 650px;
+    margin-top: 200px;
+    
 }
 
 #col-inner-tuyendung h2 {
@@ -48,8 +58,14 @@
 
 #text-head-tuyendung {
     text-align: center;
-    margin: 20px 0 20px 0;
+    width: 50%;
+    margin: auto;
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 10px 0 10px 0;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }
+
 
 #text-head-tuyendung h2 {
     font-size: 30px;

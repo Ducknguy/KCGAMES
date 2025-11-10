@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" type="image/png" href="/Image/logo-Photoroom.png">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/apply.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <div id="header_apply_form"></div>
+    <div id="application_modal">
+        <div id="modal-content">
+            <h2>Ứng tuyển ngay</h2>
+            <div id="form_apply">
+                <div id="ten-email">
+                    <input type="text" name="full_name" placeholder="Họ và tên" required>
+                    <input type="email" name="email" placeholder="Email (dùng để nhận mail xác nhận)" required>
+                </div>
+                <input id="sdt" type="tel" name="phone" placeholder="Số điện thoại" required>
+                <div id="vitriungtuyen">
+                    <label style="width: 25%;font-size: 16px;text-align: left;" for="jobPositionSelect">Vị trí ứng
+                        tuyển:</label>
+                    <select id="jobPositionSelect" name="job_position" required>
+                        <option value="" disabled selected>-- Chọn vị trí --</option>
+                        <option value="Game Design (Freshers - Junior)">𝐆𝐚𝐦𝐞 𝐃𝐞𝐬𝐢𝐠𝐧𝐞(𝐅𝐫𝐞𝐬𝐡𝐞𝐫-𝐉𝐮𝐧𝐢𝐨𝐫)</option>
+                        <option value="Unity Developer">𝐔𝐧𝐢𝐭𝐲 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐞𝐫 (𝐉𝐮𝐧𝐢𝐨𝐫-𝐒𝐞𝐧𝐢𝐨𝐫)</option>
+                        <option value="Backend Developer">𝐁𝐚𝐜𝐤𝐞𝐧𝐝 (𝐉𝐮𝐧𝐢𝐨𝐫-𝐒𝐞𝐧𝐢𝐨𝐫)</option>
+                        <option value="Marketing Game">𝐌𝐚𝐫𝐤𝐞𝐭𝐢𝐧𝐠 𝐆𝐚𝐦𝐞</option>
+                        <option value="Khác">Vị trí khác (Vui lòng ghi chú)</option>
+                    </select>
+                </div>
+                <div id="CV">
+                    <label style="width: 60%;font-size: 16px;margin-bottom: 10px;text-align: left;" for="resume">Đính
+                        kèm
+                        CV (Tối đa 5MB,
+                        *.pdf,
+                        *.docx):</label>
+                    <input style="font-size: 16px;" type="file" name="resume" id="resume" accept=".pdf,.doc,.docx"
+                        required>
+                </div>
+                <textarea id="note" name="notes"
+                    placeholder="Ghi chú, lời nhắn cho nhà tuyển dụng (tùy chọn)"></textarea>
+
+                <button id="btn_send" type="submit">GỬI ĐƠN ỨNG TUYỂN</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadHTML(url, containerId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+                }
+                const htmlContent = await response.text();
+                document.getElementById(containerId).innerHTML = htmlContent;
+            } catch (error) {
+                console.error("Error loading HTML:", error);
+            }
+        }
+
+        loadHTML('./header.html', 'header_apply_form');
+        loadHTML('./footer.html', 'footer_apply_form');
+    </script>
+    <div id="footer_apply_form"></div>
+
+</body>
+
+</html>
