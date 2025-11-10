@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/apply.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <script src="/js/apply.js"></script>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
     <div id="application_modal">
         <div id="modal-content">
             <h2>Ứng tuyển ngay</h2>
-            <div id="form_apply">
+            <form id="form_apply">
                 <div id="ten-email">
                     <input type="text" name="full_name" placeholder="Họ và tên" required>
                     <input type="email" name="email" placeholder="Email (dùng để nhận mail xác nhận)" required>
@@ -29,8 +29,10 @@
                         tuyển:</label>
                     <select id="jobPositionSelect" name="job_position" required>
                         <option value="" disabled selected>-- Chọn vị trí --</option>
-                        <option value="Game Design (Freshers - Junior)">𝐆𝐚𝐦𝐞 𝐃𝐞𝐬𝐢𝐠𝐧𝐞(𝐅𝐫𝐞𝐬𝐡𝐞𝐫-𝐉𝐮𝐧𝐢𝐨𝐫)</option>
-                        <option value="Unity Developer">𝐔𝐧𝐢𝐭𝐲 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐞𝐫 (𝐉𝐮𝐧𝐢𝐨𝐫-𝐒𝐞𝐧𝐢𝐨𝐫)</option>
+                        <option value="Game Design (Freshers - Junior)">𝐆𝐚𝐦𝐞
+                            𝐃𝐞𝐬𝐢𝐠𝐧𝐞(𝐅𝐫𝐞𝐬𝐡𝐞𝐫-𝐉𝐮𝐧𝐢𝐨𝐫)</option>
+                        <option value="Unity Developer">𝐔𝐧𝐢𝐭𝐲 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐞𝐫 (𝐉𝐮𝐧𝐢𝐨𝐫-𝐒𝐞𝐧𝐢𝐨𝐫)
+                        </option>
                         <option value="Backend Developer">𝐁𝐚𝐜𝐤𝐞𝐧𝐝 (𝐉𝐮𝐧𝐢𝐨𝐫-𝐒𝐞𝐧𝐢𝐨𝐫)</option>
                         <option value="Marketing Game">𝐌𝐚𝐫𝐤𝐞𝐭𝐢𝐧𝐠 𝐆𝐚𝐦𝐞</option>
                         <option value="Khác">Vị trí khác (Vui lòng ghi chú)</option>
@@ -49,11 +51,12 @@
                     placeholder="Ghi chú, lời nhắn cho nhà tuyển dụng (tùy chọn)"></textarea>
 
                 <button id="btn_send" type="submit">GỬI ĐƠN ỨNG TUYỂN</button>
-            </div>
+            </form>
         </div>
     </div>
 
     <script>
+        // Hàm Tải nội dung HTML bất đồng bộ (giữ nguyên)
         async function loadHTML(url, containerId) {
             try {
                 const response = await fetch(url);
@@ -67,8 +70,64 @@
             }
         }
 
-        loadHTML('./header.html', 'header_apply_form');
-        loadHTML('./footer.html', 'footer_apply_form');
+        document.addEventListener('DOMContentLoaded', () => {
+            loadHTML('./header.html', 'header_apply_form');
+            loadHTML('./footer.html', 'footer_apply_form');
+
+            const form = document.getElementById('form_apply');
+
+            // Kiểm tra form tồn tại ngay từ đầu
+            if (!form) {
+                console.error("LỖI KHÔNG TÌM THẤY: Form với ID 'form_apply' không tồn tại.");
+                return;
+            }
+
+            const submitButton = document.querySelector('#btn_send');
+
+            if (!submitButton) {
+                console.error("LỖI KHÔNG TÌM THẤY: Button với ID 'btn_send' không tồn tại.");
+                return;
+            }
+
+            const SERVER_ENDPOINT = "/api/send-application";
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+
+                submitButton.disabled = true;
+                submitButton.textContent = 'Đang gửi...';
+
+                fetch(SERVER_ENDPOINT, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        return response.json().then(data => ({
+                            status: response.status,
+                            ok: response.ok,
+                            data: data
+                        }));
+                    })
+                    .then(({ status, ok, data }) => {
+                        if (ok) {
+                            alert('✅ Đơn ứng tuyển đã được gửi thành công! Vui lòng kiểm tra email của bạn để nhận thư xác nhận.');
+                            form.reset();
+                        } else {
+                            throw new Error(data.message || `Lỗi không xác định (Mã: ${status})`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Lỗi gửi đơn:', error);
+                        alert(`❌ Gửi đơn không thành công. Chi tiết lỗi: ${error.message}`);
+                    })
+                    .finally(() => {
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'GỬI ĐƠN ỨNG TUYỂN';
+                    });
+            });
+        });
     </script>
     <div id="footer_apply_form"></div>
 
