@@ -42,7 +42,7 @@ const upload = multer({
 }).single('resume');
 
 
-app.use(express.static(__dirname));
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
