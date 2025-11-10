@@ -45,6 +45,11 @@ const upload = multer({
 app.use(express.static(__dirname));
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+    // Phục vụ file index.html nằm ở thư mục gốc
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 
 // --- ENDPOINT API: /api/send-application ---
 app.post('/api/send-application', (req, res) => {
