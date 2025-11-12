@@ -8,6 +8,13 @@
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+body {
+    background-image: url(../Image/background2.png);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 #application_modal {
     min-height: 100vh;
@@ -15,7 +22,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #f6f7fb 0%, #f0f2f7 100%);
 }
 
 #modal-content {
@@ -35,7 +41,7 @@
     font-weight: 600;
 }
 
-/* Form styling */
+
 #form_apply {
     display: flex;
     flex-direction: column;
@@ -43,7 +49,7 @@
     width: 100%;
 }
 
-/* Input groups */
+
 #ten-email {
     display: flex;
     gap: 20px;
@@ -62,7 +68,7 @@
     transition: all 0.3s ease;
 }
 
-/* File upload styling */
+
 #CV {
     display: flex;
     flex-direction: column;
@@ -85,7 +91,7 @@
     border-color: var(--primary);
 }
 
-/* Select styling */
+
 #vitriungtuyen {
     display: flex;
     flex-direction: column;
@@ -97,13 +103,13 @@
     font-size: 14px;
 }
 
-/* Textarea styling */
+
 #note {
     min-height: 120px;
     resize: vertical;
 }
 
-/* Focus states */
+
 input:focus,
 select:focus,
 textarea:focus {
@@ -112,7 +118,7 @@ textarea:focus {
     box-shadow: 0 0 0 3px rgba(234, 114, 37, 0.1);
 }
 
-/* Button styling */
+
 #btn_send {
     background: var(--primary);
     color: var(--white);
@@ -146,7 +152,7 @@ textarea:focus {
     box-shadow: none;
 }
 
-/* Loading animation */
+
 #btn_send.loading {
     color: transparent;
 }

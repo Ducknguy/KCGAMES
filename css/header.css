@@ -1,32 +1,31 @@
-/*   */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 * {
-
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif !important;
-
 }
 
 #header {
     width: 100%;
-    padding-top: 80px;
+    height: 150px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 20px 20px;
-    background: #E3E6F3;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+    justify-content: space-between;
+    padding: 20px 80px;
     background-color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
-    height: 150px;
     position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
 }
 
 #navbar {
@@ -34,6 +33,12 @@
     align-items: center;
     justify-content: center;
     flex-wrap: nowrap;
+}
+
+#menu {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
 }
 
 #navbar li {
@@ -50,10 +55,11 @@
     transition: 0.3s ease;
     white-space: nowrap;
 }
+
 #navbar li a:hover,
 #navbar li a.active {
-    color: black; /* Màu chữ cam (thống nhất với gạch chân) */
-    font-weight: 700; /* Làm chữ in đậm */
+    color: black;
+    font-weight: 700;
 }
 
 #navbar li a.active::after,
@@ -61,20 +67,204 @@
     content: "";
     width: 70%;
     height: 3px;
-    background: #ea7225; 
+    background: #ea7225;
     position: absolute;
     bottom: -4px;
     left: 20px;
 }
 
-.logo {
-    width: 100px;
-    height: 100px;
+#mobile-toggle {
+    display: none;
 }
 
+@media only screen and (max-width: 1200px) {
+    #header {
+        padding: 20px 50px;
 
-#search {
-    width: 180px;
-    padding: 3px 5px;
+    }
+
+    #navbar li {
+        padding: 0 15px;
+    }
+
+    
+    #about_we {
+        padding: 60px 50px;
+    }
+
+    #main_about img {
+        max-width: 450px;
+        height: auto;
+    }
+
+    #main-product {
+        gap: 40px;
+    }
+
+    #col-inner-hoatdong {
+        width: 280px;
+    }
 }
 
+@media only screen and (max-width: 1024px) {
+    #header {
+        height: 120px;
+        padding: 20px 40px;
+    }
+
+    .wrapper {
+        padding-top: 120px;
+    }
+
+    #navbar li {
+        padding: 0 8px;
+    }
+
+    #navbar li a {
+        font-size: 15px;
+    }
+
+    #navbar li a.active::after,
+    #navbar li a:hover::after {
+        left: 8px;
+    }
+
+    #about_we {
+        padding: 40px 40px;
+    }
+
+    #main_about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #main_about img {
+        max-width: 80%;
+        order: -1;
+    }
+
+    #text_about {
+        min-width: auto;
+    }
+
+    #main-product {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    #col-main-product,
+    #col-demo {
+        text-align: center;
+        width: 100%;
+    }
+
+    #col-demo {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    #section-hoatdong {
+        padding: 40px 40px;
+    }
+
+    #col-inner-hoatdong {
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+
+    body,
+    html {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #header {
+        justify-content: space-between;
+        padding: 20px 40px;
+        height: 100px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #fff;
+        z-index: 1000;
+    }
+
+    .wrapper {
+        padding-top: 100px;
+    }
+
+    section {
+        padding: 30px 20px;
+    }
+
+    #mobile-toggle {
+        display: block;
+        font-size: 28px;
+        cursor: pointer;
+        color: #1a1a1a;
+        z-index: 1100;
+    }
+
+    #navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: fixed;
+        top: 100px;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 100px);
+        background-color: #fff;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.15);
+        padding: 30px 0 0 30px;
+        transition: all 0.35s ease;
+        z-index: 1050;
+
+    }
+
+
+    #navbar.active {
+        right: 0;
+    }
+
+    #navbar li {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+
+    #navbar li a {
+        display: block;
+        width: 100%;
+        font-size: 16px;
+        text-align: left;
+        color: #1a1a1a;
+    }
+
+    #navbar li a::after {
+        display: none;
+    }
+
+    #main_about img {
+        max-width: 100%;
+    }
+
+    #col-inner-hoatdong {
+        width: 100%;
+    }
+
+    .wrapper,
+    section {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}

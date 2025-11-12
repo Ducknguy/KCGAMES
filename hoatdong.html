@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/hoatdong.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <script src="/js/header.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -35,58 +36,33 @@
                         <p>Mô tả hoạt động</p>
                     </div>
                 </div>
-                <!-- <div id="col-inner">
-                    <img src="/Image/hoatdong.png" alt="">
-                    <div id="text-content">
-                        <h5>
-                            TÊN HOẠT ĐỘNG
-                        </h5>
-                        <p>Mô tả hoạt động</p>
-                    </div>
-                </div>
-                <div id="col-inner">
-                    <img src="/Image/hoatdong.png" alt="">
-                    <div id="text-content">
-                        <h5>
-                            TÊN HOẠT ĐỘNG
-                        </h5>
-                        <p>Mô tả hoạt động</p>
-                    </div>
-                </div> -->
             </div>
-            <!-- <div id="row-inner">
-                <div id="col-inner">
-                    <img src="/Image/hoatdong.png" alt="">
-                    <div id="text-content">
-                        <h5>
-                            TÊN HOẠT ĐỘNG
-                        </h5>
-                        <p>Mô tả hoạt động</p>
-                    </div>
-                </div>
-                <div id="col-inner">
-                    <img src="/Image/hoatdong.png" alt="">
-                    <div id="text-content">
-                        <h5>
-                            TÊN HOẠT ĐỘNG
-                        </h5>
-                        <p>Mô tả hoạt động</p>
-                    </div>
-                </div>
-                <div id="col-inner">
-                    <img src="/Image/hoatdong.png" alt="">
-                    <div id="text-content">
-                        <h5>
-                            TÊN HOẠT ĐỘNG
-                        </h5>
-                        <p>Mô tả hoạt động</p>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 
     <script>
+        function initializeMobileMenu() {
+            const navbar = document.getElementById('navbar');
+            const mobileToggle = document.getElementById('mobile-toggle');
+
+            if (mobileToggle && navbar) {
+                const menuIcon = mobileToggle.querySelector('i');
+
+                mobileToggle.addEventListener('click', () => {
+                    navbar.classList.toggle('active');
+
+                    if (navbar.classList.contains('active')) {
+                        menuIcon.classList.remove('fa-bars');
+                        menuIcon.classList.add('fa-times');
+                    } else {
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                });
+            }
+        }
+
+
         function setActiveNav() {
             const navLinkEls = document.querySelectorAll('.nav_link');
             const windowPathname = window.location.pathname;
@@ -95,12 +71,14 @@
                 const navLinkPathname = new URL(navLinkEl.href).pathname;
                 const normalizedWindowPath = (windowPathname === '/index.html' || windowPathname === '') ? '/' : windowPathname;
                 const normalizedNavLinkPath = (navLinkPathname === '/index.index' || navLinkPathname === '/index.html') ? '/' : navLinkPathname;
+
                 navLinkEl.classList.remove('active');
                 if (normalizedWindowPath === normalizedNavLinkPath) {
                     navLinkEl.classList.add('active');
                 }
             });
         }
+
         async function loadHTML(url, containerId, callback = () => { }) {
             try {
                 const response = await fetch(url);
@@ -116,7 +94,15 @@
                 console.error("Error loading HTML:", error);
             }
         }
-        loadHTML('./html/client/header.html', 'header_hoatdong', setActiveNav);
+
+
+        function afterHeaderLoad() {
+            setActiveNav();
+            initializeMobileMenu();
+        }
+
+
+        loadHTML('./html/client/header.html', 'header_hoatdong', afterHeaderLoad);
         loadHTML('./html/client/footer.html', 'footer_hoatdong');
     </script>
     <div id="footer_hoatdong"></div>

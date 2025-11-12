@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/lienhe.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <script src="/js/header.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
@@ -19,20 +20,24 @@
     <img id="main_page" src="/Image/draw-3583548_1280.png" alt="">
     <section id="section-lienhe">
         <div id="section-form">
-            <div id="lienlac">
+            <div style="padding-bottom: 30px;" id="lienlac">
                 <h2>LIÊN LẠC</h2>
             </div>
-            <div id="section-content">
+            <form id="section-content">
                 <div id="hoten-email">
-                    <input type="text" placeholder="Họ và tên">
-                    <input type="text" placeholder="Email">
+                    <input id="full_name" type="text" name="full_name" placeholder="Họ và tên" required>
+
+                    <input id="email" type="email" name="email" placeholder="Email" required>
                 </div>
-                <textarea name="" id="noidung" placeholder="Nội dung liên hệ"></textarea>
+                <textarea name="notes" id="notes" placeholder="Nội dung liên hệ" required></textarea>
                 <br>
-                <button>
-                    Gửi ngay
-                </button>
-            </div>
+
+                <input type="hidden" name="phone" value="[Không có SDT]">
+                <input type="hidden" name="job_position" value="[Liên hệ website]">
+                <input type="hidden" name="resume" value="">
+
+                <button id="btn_send" type="submit">Gửi ngay</button>
+            </form>
         </div>
     </section>
 
@@ -54,6 +59,29 @@
     </div>
 
     <script>
+        // === HÀM TÁI SỬ DỤNG: LOGIC MENU MOBILE (GIỮ NGUYÊN) ===
+        function initializeMobileMenu() {
+            const navbar = document.getElementById('navbar');
+            const mobileToggle = document.getElementById('mobile-toggle');
+
+            if (mobileToggle && navbar) {
+                const menuIcon = mobileToggle.querySelector('i');
+
+                mobileToggle.addEventListener('click', () => {
+                    navbar.classList.toggle('active');
+
+                    if (navbar.classList.contains('active')) {
+                        menuIcon.classList.remove('fa-bars');
+                        menuIcon.classList.add('fa-times');
+                    } else {
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                });
+            }
+        }
+
+        // === HÀM TÁI SỬ DỤNG: LOGIC ACTIVE LINK (GIỮ NGUYÊN) ===
         function setActiveNav() {
             const navLinkEls = document.querySelectorAll('.nav_link');
             const windowPathname = window.location.pathname;
@@ -68,6 +96,8 @@
                 }
             });
         }
+
+        // === HÀM TẢI VÀ CHÈN HTML BẤT ĐỒNG BỘ (GIỮ NGUYÊN) ===
         async function loadHTML(url, containerId, callback = () => { }) {
             try {
                 const response = await fetch(url);
@@ -76,15 +106,90 @@
                 }
                 const htmlContent = await response.text();
 
-                document.getElementById(containerId).innerHTML = htmlContent;
-                callback();
-
+                // Đảm bảo phần tử tồn tại trước khi chèn
+                const container = document.getElementById(containerId);
+                if (container) {
+                    container.innerHTML = htmlContent;
+                    callback(); // GỌI CALLBACK SAU KHI HTML ĐÃ ĐƯỢC CHÈN
+                } else {
+                    console.error(`LỖI: Không tìm thấy container ID '${containerId}'`);
+                }
             } catch (error) {
                 console.error("Error loading HTML:", error);
             }
         }
-        loadHTML('./html/client/header.html', 'header_lienhe', setActiveNav);
-        loadHTML('./html/client/footer.html', 'footer_lienhe');
+
+        // === HÀM GỌI CALLBACK: TỔNG HỢP CÁC KHỞI TẠO (GIỮ NGUYÊN) ===
+        function afterHeaderLoad() {
+            setActiveNav(); // Đặt link active
+            initializeMobileMenu(); // Khởi tạo cơ chế menu mobile
+        }
+
+        // === THỰC THI CHƯƠNG TRÌNH ===
+        document.addEventListener('DOMContentLoaded', () => {
+            // ❌ LỖI TRƯỚC ĐÂY: Bạn gọi setActiveNav() thay vì afterHeaderLoad().
+            // SỬA: Thay setActiveNav bằng afterHeaderLoad để khởi tạo cả menu mobile.
+            loadHTML('./html/client/header.html', 'header_lienhe', afterHeaderLoad);
+            loadHTML('./html/client/footer.html', 'footer_lienhe');
+
+            // === LOGIC GỬI FORM (GIỮ NGUYÊN) ===
+            const form = document.getElementById('section-content');
+
+            if (!form) {
+                console.error("LỖI KHÔNG TÌM THẤY: Form với ID 'section-content' không tồn tại.");
+                return;
+            }
+
+            const submitButton = document.querySelector('#btn_send');
+
+            if (!submitButton) {
+                console.error("LỖI KHÔNG TÌM THẤY: Button với ID 'btn_send' không tồn tại.");
+                return;
+            }
+
+            const SERVER_ENDPOINT = "/api/send-contact";
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const urlSearchParams = new URLSearchParams(formData);
+                const bodyEncoded = urlSearchParams.toString();
+
+                submitButton.disabled = true;
+                submitButton.textContent = 'Đang gửi...';
+
+                fetch(SERVER_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: bodyEncoded
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(data => { throw new Error(data.message || `Lỗi không xác định (Mã: ${response.status})`); });
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        if (data.success) {
+                            alert('✅ Gửi thông tin thành công');
+                            form.reset();
+                        } else {
+                            throw new Error(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Lỗi gửi đơn:', error);
+                        alert(`❌ Gửi đơn không thành công. Chi tiết lỗi: ${error.message}`);
+                    })
+                    .finally(() => {
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'GỬI ĐƠN LIÊN HỆ';
+                    });
+            });
+        });
     </script>
     <div id="footer_lienhe"></div>
 </body>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/sanpham.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <script src="/js/header.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -28,14 +29,9 @@
 
                         <div class="game-overlay">
                             <a href="LINK_TAI_GAME_1" class="view-more-link">
-                                Xem thêm
+                                TEN GAME (Comming Soon)
                             </a>
                         </div>
-                    </div>
-                    <div class="text-info">
-                        <h4> TEN GAME (Comming Soon)</h4>
-                        <img class="download-badge" src="/Image/androi-e1721277717590.png" alt="Tải trên Google Play">
-                        <P>Mô tả game</P>
                     </div>
                 </div>
 
@@ -44,14 +40,9 @@
                         <img src="/Image/game1.png" alt="TEN GAME Icon">
                         <div class="game-overlay">
                             <a href="LINK_TAI_GAME_2" class="view-more-link">
-                                Xem thêm
+                                TEN GAME (Comming Soon)
                             </a>
                         </div>
-                    </div>
-                    <div class="text-info">
-                        <h4> TEN GAME (Comming Soon)</h4>
-                        <img class="download-badge" src="/Image/androi-e1721277717590.png" alt="Tải trên Google Play">
-                        <P>Mô tả game</P>
                     </div>
                 </div>
 
@@ -61,6 +52,28 @@
     </section>
 
     <script>
+        function initializeMobileMenu() {
+            const navbar = document.getElementById('navbar');
+            const mobileToggle = document.getElementById('mobile-toggle');
+
+            if (mobileToggle && navbar) {
+                const menuIcon = mobileToggle.querySelector('i');
+
+                mobileToggle.addEventListener('click', () => {
+                    navbar.classList.toggle('active');
+
+                    if (navbar.classList.contains('active')) {
+                        menuIcon.classList.remove('fa-bars');
+                        menuIcon.classList.add('fa-times');
+                    } else {
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                });
+            }
+        }
+
+
         function setActiveNav() {
             const navLinkEls = document.querySelectorAll('.nav_link');
             const windowPathname = window.location.pathname;
@@ -69,12 +82,14 @@
                 const navLinkPathname = new URL(navLinkEl.href).pathname;
                 const normalizedWindowPath = (windowPathname === '/index.html' || windowPathname === '') ? '/' : windowPathname;
                 const normalizedNavLinkPath = (navLinkPathname === '/index.index' || navLinkPathname === '/index.html') ? '/' : navLinkPathname;
+
                 navLinkEl.classList.remove('active');
                 if (normalizedWindowPath === normalizedNavLinkPath) {
                     navLinkEl.classList.add('active');
                 }
             });
         }
+
         async function loadHTML(url, containerId, callback = () => { }) {
             try {
                 const response = await fetch(url);
@@ -82,13 +97,23 @@
                     throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
                 }
                 const htmlContent = await response.text();
+
                 document.getElementById(containerId).innerHTML = htmlContent;
                 callback();
+
             } catch (error) {
                 console.error("Error loading HTML:", error);
             }
         }
-        loadHTML('./html/client/header.html', 'header_sanpham', setActiveNav);
+
+
+        function afterHeaderLoad() {
+            setActiveNav();
+            initializeMobileMenu();
+        }
+
+
+        loadHTML('./html/client/header.html', 'header_sanpham', afterHeaderLoad);
         loadHTML('./html/client/footer.html', 'footer_sanpham');
     </script>
 

@@ -1,5 +1,16 @@
+:root {
+    --page-bg: #F0F2F5;
+    --card-bg: #fff;
+    --gap: 20px;
+    --max-width: 1100px;
+    --radius: 12px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+    --accent: #ea7225;
+    --card-size: 320px;
+}
+
 body {
-    background-color: #F0F2F5;
+    background-color: var(--page-bg);
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -13,79 +24,76 @@ body {
 }
 
 #section-sanpham {
-    padding-top: 20px;
+    padding-top: 60px;
+    height: 500px;
+    background-color: #fff;
 }
-
 
 #section-content-sanpham {
     display: flex;
     justify-content: center;
-    padding: 20px 0;
+    padding: 20px 16px;
+    box-sizing: border-box;
 }
 
 
 #col-sanpham1 {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--gap);
     width: 100%;
-    max-width: 1100px;
+    max-width: var(--max-width);
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
 }
-
 
 .game-card {
-    display: flex;
-    width: 90%;
-    max-width: 1000px;
-    height: 180px;
-    margin: 15px 0;
-    padding: 20px;
-    align-items: center;
-    position: relative;
-    background-color: #FFF;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-
-.game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-
-.image-wrapper {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
     position: relative;
     overflow: hidden;
-    width: 140px;
-    height: 140px;
-    border-radius: 10px;
-    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 20px 0px;
+    flex: 0 0 auto;
+    flex-basis: var(--card-size);
+    max-width: var(--card-size);
+    min-width: 180px;
+}
+
+.game-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+}
+
+.image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #f6f6f6;
+    display: block;
 }
 
 .image-wrapper img {
     width: 100%;
     height: 100%;
-    display: block;
     object-fit: cover;
-    margin: 0;
+    display: block;
 }
 
 
 .game-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     display: flex;
+    align-items: end;
     justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    transition: opacity 0.3s ease;
+    transition: opacity .22s ease;
 }
 
 .game-card:hover .game-overlay {
@@ -93,44 +101,146 @@ body {
 }
 
 
+.view-more-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    background-color: transparent;
+}
+
+
 .text-info {
-    margin-left: 30px;
+    padding: 14px;
+    box-sizing: border-box;
 }
 
 .text-info h4 {
-    color: #333;
-    font-size: 1.5em;
-    margin-top: 0;
-    margin-bottom: 5px;
+    margin: 0 0 6px 0;
+    font-size: 1.05rem;
+    color: #222;
 }
 
 .text-info p {
+    margin: 0;
     color: #666;
-    font-size: 1em;
-    margin-top: 5px;
+    font-size: 0.95rem;
 }
 
+@media only screen and (max-width: 1200px) {
 
-.download-badge {
-    width: 120px;
-    height: auto;
-    padding-top: 10px;
+    :root {
+        --max-width: 900px;
+        --card-size: 280px;
+    }
+
+    #main_page {
+        height: 550px;
+    }
+
+    #section-sanpham {
+        padding-top: 40px;
+    }
+
+    #col-sanpham1 {
+        padding: 0 10px;
+    }
+
+    .game-card {
+        margin: 0 10px 0 10px;
+    }
 }
 
+@media only screen and (max-width: 1024px) {
 
-.view-more-link {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    font-weight: 600;
-    padding: 8px 15px;
-    border: 1px solid white;
-    border-radius: 20px;
-    white-space: nowrap;
-    transition: all 0.2s ease;
+    :root {
+        --max-width: 700px;
+        --card-size: 250px;
+    }
+
+    #main_page {
+        height: 400px;
+    }
+
+    #section-sanpham {
+        height: auto;
+        min-height: 500px;
+    }
+
+    #col-sanpham1 {
+        padding: 0;
+        justify-content: space-around;
+    }
+
+    .game-card {
+        flex-basis: var(--card-size);
+        margin: 0 5px 20px 5px;
+    }
 }
 
-.view-more-link:hover {
+@media only screen and (min-width:490px) and (max-width:768px) {
+    .game-card {
+        width: 90%;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        height: auto;
+    }
 
-    color: #ea7225;
+    .image-wrapper {
+        width: 100%;
+        height: auto;
+    }
+
+    #col-sanpham1 {
+        padding: 20px 0;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    :root {
+        --card-size: 80vw;
+        --gap: 15px;
+    }
+
+    #main_page {
+        height: 250px;
+    }
+
+    #section-sanpham {
+        padding-top: 20px;
+        min-height: 300px;
+    }
+
+    #col-sanpham1 {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .game-card {
+        flex-basis: var(--card-size);
+        max-width: 400px;
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+
+    .game-card:hover {
+        transform: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+    }
+
+    .game-overlay {
+        opacity: 1 !important;
+        align-items: center;
+    }
+
+    .view-more-link {
+        font-size: 1rem;
+        padding: 10px 20px;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 5px;
+    }
 }

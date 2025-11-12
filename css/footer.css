@@ -4,7 +4,32 @@
     display: flex;
     background-color: #161324;
     color: #fff;
-    padding-top: 50px;
+    padding: 50px 80px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+#col-inner1,
+#col-inner2,
+#col-inner3 {
+    padding: 0;
+    flex-grow: 1;
+    min-width: 250px;
+}
+
+#col-inner1 {
+    min-width: 300px;
+    margin-left: 0;
+}
+
+#col-inner2 {
+    max-width: 250px;
+}
+
+#col-inner3 {
+    max-width: 200px;
+    text-align: center;
 }
 
 #categories_item li a {
@@ -25,21 +50,6 @@
     list-style: none;
     padding: 0 20px;
     position: relative;
-
-}
-
-#col-inner1 {
-    margin-left: 10px;
-    padding-right: 100px;
-}
-
-#col-inner2 {
-    padding: 0 100px;
-
-}
-
-#col-inner3 {
-    padding: 0 50px;
 }
 
 ul {
@@ -48,11 +58,93 @@ ul {
 }
 
 #menulink {
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
+#menulink li {
+    padding: 0;
+}
 
 #menulink li a:hover {
-
     color: #ea7225;
+}
+
+#categories_item {
+    padding-top: 0 !important;
+}
+
+#footer h3 {
+    font-size: 2.5rem;
+    /* 40px */
+    padding-bottom: 20px;
+    margin-top: 0;
+}
+
+.bx {
+    vertical-align: middle;
+}
+
+@media only screen and (max-width: 1200px) {
+    #footer {
+        padding: 40px 60px;
+    }
+
+    #col-inner1 {
+        min-width: 280px;
+    }
+
+    #footer h3 {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    #footer {
+        padding: 40px 40px;
+       justify-content: space-around;
+    }
+
+    #col-inner1 {
+        min-width: 40%;
+    }
+
+    #col-inner2 {
+        min-width: 40%;
+        max-width: 40%;
+    }
+
+    #col-inner3 {
+        width: 100%;
+        margin-top: 30px;
+        max-width: 100%;
+        text-align: left;
+    }
+
+    #col-inner3 h3 {
+        text-align: left;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #footer {
+        padding: 30px 20px;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    #col-inner1,
+    #col-inner2,
+    #col-inner3 {
+        min-width: 100%;
+        max-width: 100%;
+        text-align: left;
+    }
+
+    #col-inner3 {
+        margin-top: 0;
+    }
+
+    #footer h3 {
+        font-size: 1.8rem;
+    }
 }

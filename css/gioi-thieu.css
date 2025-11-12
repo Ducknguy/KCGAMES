@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
-    width: 1520px;
-    font-family: "Poppins", sans-serif;
+    background-color: var(--page-bg);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 #main_page {
@@ -117,4 +119,144 @@ p {
 
 #col-inner-thanhvien h4 {
     margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 1024px) {
+
+    #main_page {
+        height: 500px;
+    }
+
+    #section-gioithieu {
+        flex-direction: column;
+        padding: 50px 30px;
+    }
+
+    #section-gioithieu img {
+        max-width: 80%;
+        height: auto;
+        margin: 20px auto;
+        order: -1;
+    }
+
+    #section-content {
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    #section-content p {
+        font-size: 30px;
+    }
+
+    #main-tuyen-ngon {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    #col-inner {
+        width: 45%;
+        min-width: 300px;
+        height: auto;
+        margin: 15px auto;
+    }
+
+    #section-content-thanhvien {
+        flex-wrap: wrap;
+    }
+
+    #col-inner-thanhvien {
+        width: 45%;
+        margin: 15px auto;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+
+    #main_page {
+        height: 300px;
+    }
+
+    #section-content p {
+        font-size: 16px;
+    }
+
+
+    #section-gioithieu {
+        padding: 30px 15px;
+    }
+
+    #section-gioithieu img {
+        max-width: 100%;
+        margin: 15px 0;
+    }
+
+    #section-content p[style] {
+        font-size: 28px !important;
+        text-align: center !important;
+    }
+
+    #col-inner {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    #col-inner img {
+        max-width: 100px;
+        height: auto;
+    }
+
+    #text-box p:first-child {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    #section-thanhvien h2 {
+        font-size: 2em;
+    }
+
+    #col-inner-thanhvien {
+        width: 100%;
+        margin: 10px 0;
+        height: auto;
+        padding: 20px 0;
+    }
+
+    #col-inner-thanhvien img {
+        width: 150px;
+        height: 100px;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+
+    #section-gioithieu {
+        padding: 50px 40px;
+    }
+
+    #section-gioithieu img {
+        max-width: 400px;
+        height: auto;
+    }
+
+    #section-content {
+        margin-right: 20px;
+        max-width: 500px;
+    }
+
+    #main-tuyen-ngon {
+        gap: 15px;
+    }
+
+    #col-inner {
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+    }
+
+    #col-inner-thanhvien {
+        width: 220px;
+        margin: 20px;
+    }
 }

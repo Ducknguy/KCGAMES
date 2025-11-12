@@ -1,6 +1,20 @@
-#main-page {
-    margin: 300px 00 300px 20px;
+body {
+    background-image: url(../Image/background-tuyendung1.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
+#main-page {
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 1000px;
+    width: 90%;
+    border-radius: 10px;
+    border: 0.3px solid #000;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
 #main-page h1 {
@@ -10,16 +24,31 @@
 #wraper {
     width: 100%;
     justify-items: center;
-    height: 1250px;
+    height: auto;
+    min-height: 100vh;
+    padding-top: 150px;
 }
 
 #btn_back {
-    width: 300px;
+    width: auto;
     height: 42px;
     align-items: center;
     display: flex;
     justify-items: center;
+    flex-shrink: 0;
 
+}
+
+#btn_open_form {
+    width: auto;
+    height: 42px;
+    align-items: center;
+    display: flex;
+    justify-items: center;
+    position: absolute;
+    right: auto;
+    flex-shrink: 0;
+    position: static;
 }
 
 #btn_back a {
@@ -34,4 +63,104 @@
 #btn_back a:hover {
     color: #ea7225;
     margin-left: -10px;
+}
+
+#btn_open_form a:hover {
+    color: #ea7225;
+    margin-left: 10px;
+}
+
+#text-page {
+    margin: 0;
+    padding: 0 30px;
+}
+
+#btn_open_form a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+#btn {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+}
+
+@media only screen and (max-width: 1200px) {
+    #wraper {
+        padding-top: 120px;
+    }
+
+    #main-page {
+        width: 95%;
+        margin: 40px auto;
+        max-width: 900px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    #wraper {
+        padding-top: 100px;
+    }
+
+    #main-page {
+        width: 95%;
+        margin: 30px auto;
+        max-width: 700px;
+    }
+
+    #text-page {
+        padding: 0 20px;
+    }
+
+    #main-page h1 {
+        font-size: 1.8em;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #wraper {
+        padding-top: 100px;
+    }
+
+    #main-page {
+        width: 98%;
+        margin: 15px auto;
+        border-radius: 0;
+    }
+
+    #text-page {
+        padding: 0 15px;
+    }
+
+    #main-page h1 {
+        font-size: 1.5em;
+    }
+
+    #btn {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    #btn_back,
+    #btn_open_form {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    #btn_back a {
+        padding-left: 20px;
+    }
+
+    #btn_open_form b {
+        padding-right: 10px;
+    }
 }

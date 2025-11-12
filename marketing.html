@@ -7,15 +7,16 @@
     <title>Game Design - KCGAMES</title>
     <link rel="icon" type="image/png" href="/Image/logo-Photoroom.png">
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/gamedesigne.css">
+    <link rel="stylesheet" href="/css/marketing.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <script src="/js/header.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
 
 <body>
     <div>
-    
+
         <div id="header_gamedesigne"></div>
         <div id="wraper">
             <div id="main-page">
@@ -80,7 +81,8 @@
                         </div>
                         <div id="btn_open_form">
                             <b style="padding-left: 10px;">Ứng tuyển ngay</b>
-                            <a href="/html/client/apply-form.html"><i style="font-size: 42px;" class='bx bx-chevrons-right'></i></a>
+                            <a href="/html/client/apply-form.html"><i style="font-size: 42px;"
+                                    class='bx bx-chevrons-right'></i></a>
                         </div>
                     </div>
 
@@ -90,23 +92,69 @@
         </div>
     </div>
 
-
-
     <script>
-        async function loadHTML(url, containerId) {
+        function initializeMobileMenu() {
+            const navbar = document.getElementById('navbar');
+            const mobileToggle = document.getElementById('mobile-toggle');
+
+            if (mobileToggle && navbar) {
+                const menuIcon = mobileToggle.querySelector('i');
+
+                mobileToggle.addEventListener('click', () => {
+                    navbar.classList.toggle('active');
+
+                    if (navbar.classList.contains('active')) {
+                        menuIcon.classList.remove('fa-bars');
+                        menuIcon.classList.add('fa-times');
+                    } else {
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                });
+            }
+        }
+
+
+        function setActiveNav() {
+            const navLinkEls = document.querySelectorAll('.nav_link');
+            const windowPathname = window.location.pathname;
+
+            navLinkEls.forEach(navLinkEl => {
+                const navLinkPathname = new URL(navLinkEl.href).pathname;
+                const normalizedWindowPath = (windowPathname === '/index.html' || windowPathname === '') ? '/' : windowPathname;
+                const normalizedNavLinkPath = (navLinkPathname === '/index.index' || navLinkPathname === '/index.html') ? '/' : navLinkPathname;
+
+                navLinkEl.classList.remove('active');
+                if (normalizedWindowPath === normalizedNavLinkPath) {
+                    navLinkEl.classList.add('active');
+                }
+            });
+        }
+
+        async function loadHTML(url, containerId, callback = () => { }) {
             try {
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
                 }
                 const htmlContent = await response.text();
+
                 document.getElementById(containerId).innerHTML = htmlContent;
+                callback();
+
             } catch (error) {
                 console.error("Error loading HTML:", error);
             }
         }
 
-        loadHTML('./html/client/header.html', 'header_gamedesigne');
+
+        function afterHeaderLoad() {
+            setActiveNav();
+            initializeMobileMenu();
+        }
+
+
+        loadHTML('./html/client/header.html', 'header_gamedesigne', afterHeaderLoad);
         loadHTML('./html/client/footer.html', 'footer_gamedesigne');
     </script>
     <div id="footer_gamedesigne"></div>

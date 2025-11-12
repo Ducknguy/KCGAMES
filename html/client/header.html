@@ -1,15 +1,59 @@
-<section id="header">
-    <a style="width: 100px;height: 100px;" href="/index.html"><img style="margin: 0;" src="/Image/logo-Photoroom.png "
-            class="logo" alt=""></a>
-    <div id="menu">
-        <ul id="navbar">
-            <li><a href="/index.html" class="nav_link">Trang chủ</a></li>
-            <li><a href="/gioi-thieu.html" class="nav_link">Giới Thiệu</a></li>
-            <li><a href="/hoatdong.html" class="nav_link">Hoạt Động</a></li>
-            <li><a href="/sanpham.html" class="nav_link">Sản phẩm</a></li>
-            <li><a href="/tuyendung.html" class="nav_link">Tuyển Dụng</a></li>
-            <li><a href="/lienhe.html" class="nav_link">Liên Hệ</a></li>
-        </ul>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
 
-</section>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <section id="header">
+        <a style="width: 100px;height: 100px;" href="/index.html">
+            <img style="margin: 0;" src="/Image/logo-Photoroom.png " class="logo" alt="">
+        </a>
+
+        <div id="menu">
+            <ul id="navbar">
+                <li><a href="/index.html" class="nav_link active">Trang chủ</a></li>
+                <li><a href="/gioi-thieu.html" class="nav_link">Giới Thiệu</a></li>
+                <li><a href="/hoatdong.html" class="nav_link">Hoạt Động</a></li>
+                <li><a href="/sanpham.html" class="nav_link">Sản phẩm</a></li>
+                <li><a href="/tuyendung.html" class="nav_link">Tuyển Dụng</a></li>
+                <li><a href="/lienhe.html" class="nav_link">Liên Hệ</a></li>
+            </ul>
+        </div>
+
+        <div id="mobile-toggle">
+            <i class='bx bx-menu'></i>
+        </div>
+
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navbar = document.getElementById('navbar');
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const menuIcon = mobileToggle.querySelector('i');
+
+            if (mobileToggle && navbar) {
+                mobileToggle.addEventListener('click', () => {
+                    navbar.classList.toggle('active');         
+                    if (navbar.classList.contains('active')) {
+                        menuIcon.classList.remove('bx-menu');
+                        menuIcon.classList.add('bx-x');
+                    } else {
+                        menuIcon.classList.remove('bx-x');
+                        menuIcon.classList.add('bx-menu');
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

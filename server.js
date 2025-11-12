@@ -7,8 +7,7 @@ require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
 const multer = require('multer');
-// Bỏ require path và fs vì không còn lưu file cục bộ nữa
-const path = require('path');
+// const path = require('path');
 // const fs = require('fs'); 
 
 const app = express();
@@ -22,7 +21,6 @@ const RECEIVER_EMAIL = process.env.RECEIVER_EMAIL;
 // Kiểm tra biến môi trường quan trọng
 if (!SENDER_EMAIL || !APP_PASSWORD || !RECEIVER_EMAIL) {
     console.error("LỖI CẤU HÌNH: Thiếu SENDER_EMAIL, APP_PASSWORD, hoặc RECEIVER_EMAIL trong file .env!");
-    // Trong môi trường Vercel, nên để code này để Serverless Function bị lỗi nếu thiếu config
     process.exit(1);
 }
 
@@ -41,17 +39,13 @@ const upload = multer({
     limits: { fileSize: 5 * 1024 * 1024 }
 }).single('resume');
 
-
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'Image')));
-app.use(express.static(path.join(__dirname, 'css')));
-app.use(express.static(path.join(__dirname, 'html')));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname));
+// app.use(express.json());
 
-app.get('/', (req, res) => {
-    // Phục vụ file index.html nằm ở thư mục gốc
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
+
+
+
 
 
 // --- ENDPOINT API: /api/send-application ---
@@ -118,7 +112,7 @@ app.post('/api/send-application', (req, res) => {
                     <br><br>
                     Trân trọng,
                     <br>
-                    Công ty Tuyển Dụng
+                    Công ty KCGAMES
                 `,
             };
 
@@ -144,6 +138,49 @@ app.post('/api/send-application', (req, res) => {
 
         }
     });
+});
+
+
+// --- ENDPOINT API: /api/send-contact ---
+
+const textOnlyParser = express.urlencoded({ extended: true });
+
+app.post('/api/send-contact', textOnlyParser, async (req, res) => {
+    try {
+        // Lấy dữ liệu (sẽ có phone và job_position mặc định)
+        const { full_name, email, notes } = req.body;
+
+        // Gửi Email Liên hệ tới Nhà Tuyển Dụng 
+        if (!full_name || !email || !notes) {
+            return res.status(400).json({ success: false, message: 'Vui lòng điền đầy đủ Họ tên, Email và Nội dung.' });
+        }
+
+        // --- 1. Gửi Email Liên hệ tới Nhà Tuyển Dụng ---
+        const mailOptions = {
+            from: `"Liên hệ: ${full_name}" <${SENDER_EMAIL}>`,
+            to: RECEIVER_EMAIL,
+            replyTo: email,
+            subject: `[LIÊN HỆ MỚI] Từ ${full_name}`,
+            html: `
+                <h3>Thông tin liên hệ:</h3>
+                <p><strong>Họ và tên:</strong> ${full_name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Nội dung:</strong> ${notes.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+            `,
+        };
+
+
+        await transporter.sendMail(mailOptions);
+
+        res.status(200).json({ success: true, message: 'Gửi thông tin thành công.' });
+
+    } catch (error) {
+        console.error('Lỗi gửi liên hệ:', error);
+        res.status(500).json({ success: false, message: 'Không thể gửi thông tin. Vui lòng thử lại sau.' });
+    }
+    finally {
+
+    }
 });
 
 
