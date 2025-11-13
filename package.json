@@ -23,6 +23,7 @@
     "multer": "^2.0.2",
     "node": "^25.1.0",
     "nodemailer": "^7.0.10",
-    "resend": "^6.4.2"
+    "resend": "^6.4.2",
+    "sib-api-v3-sdk": "^8.5.0"
   }
 }
