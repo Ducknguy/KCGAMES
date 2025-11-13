@@ -27,9 +27,6 @@ if (!SENDER_EMAIL || !APP_PASSWORD || !RECEIVER_EMAIL) {
 // --- Cấu hình Nodemailer sử dụng tài khoản SMTP thật (Gmail) ---
 const transporter = nodemailer.createTransport({
     service: 'gmail',
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
     auth: {
         user: SENDER_EMAIL,
         pass: APP_PASSWORD
