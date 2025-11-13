@@ -96,10 +96,7 @@
             const mobileToggle = document.getElementById('mobile-toggle');
 
             if (mobileToggle && navbar) {
-                // Giả định bạn đã có icon fa-bars và fa-times từ một thư viện font icon (ví dụ Font Awesome)
-                // Tuy nhiên, vì bạn dùng Boxicons, bạn cần đảm bảo HTML cho #mobile-toggle có thẻ <i> hoặc tương đương
-                // và logic classlist.remove/add boxicons
-                // Dưới đây là logic cũ:
+            
                 const menuIcon = mobileToggle.querySelector('i');
 
                 mobileToggle.addEventListener('click', () => {
