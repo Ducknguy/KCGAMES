@@ -1,7 +1,5 @@
-/* --- Import Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* --- Global Styles --- */
 body {
     background-color: var(--page-bg);
     font-family: Arial, sans-serif;
@@ -11,7 +9,7 @@ body {
 
 #main_page {
     width: 100%;
-    height: 700px; /* Base height for desktop */
+    height: 700px;
     margin: 0;
     object-fit: cover;
 }
@@ -21,8 +19,6 @@ p {
     text-align: justify;
 }
 
-
-/* --- Section: Giới Thiệu (Introduction) --- */
 #section-gioithieu {
     display: flex;
     justify-content: center;
@@ -32,12 +28,12 @@ p {
 }
 
 #section-gioithieu img {
-    max-width: 500px; /* Base image size */
+    max-width: 500px;
     height: auto;
 }
 
 #section-content {
-    margin-right: 40px; /* Base margin */
+    margin-right: 40px;
     margin-left: 0;
 }
 
@@ -48,16 +44,14 @@ p {
     font-size: 16px;
 }
 
-/* Big Title Style */
 #section-content p[style] {
-    font-size: 40px; /* Base title size */
+    font-size: 40px;
     margin-bottom: 10px;
     font-weight: 600;
     text-align: left;
 }
 
 
-/* --- Section: Tuyên Ngôn (Mission/Statement) --- */
 #section-tuyen-ngon {
     margin-bottom: 100px;
 }
@@ -126,15 +120,23 @@ p {
     text-align: center;
 }
 
-/* --- Section: Team (Thành Viên) - Sliding Carousel (Unused/Alternate CSS) --- */
-/* Kept the original carousel CSS block here, assuming the final layout is the static grid below */
-
 #section-thanhvien {
     padding: 0 15px 100px 15px;
     justify-items: center;
-    text-align: center; /* Added for general centering */
-    user-select: none; /* For the potential carousel part */
+    text-align: center;
+    user-select: none;
+    /* Thiết lập lại bố cục cho phần thành viên */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+/* Thẻ cố định sẽ nằm ngay dưới H2 */
+.member-fixed {
+    margin-bottom: 30px;
+    max-width: 280px;
+}
+
 
 #section-thanhvien h2 {
     text-align: center;
@@ -144,29 +146,33 @@ p {
     font-weight: 700;
 }
 
-/* 1. Carousel Wrapper: Cố định kích thước hiển thị */
 .carousel-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    overflow: hidden;
+    overflow-x: scroll;
+    /* Bật cuộn ngang cho wrapper */
+    overflow-y: hidden;
     padding: 0 15px;
     cursor: grab;
-}
-
-/* 2. Member Track: Chứa tất cả thẻ và là đối tượng bị dịch chuyển */
-.member-track {
-    display: flex;
-    transition: transform 0.3s ease-out;
-    padding-bottom: 20px;
+    /* Ẩn scrollbar nếu cần, tuy nhiên scrollbar-width chỉ hoạt động trên Firefox */
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-.member-track::-webkit-scrollbar {
+/* Ẩn scrollbar trên Webkit (Chrome, Safari) */
+.carousel-wrapper::-webkit-scrollbar {
     display: none;
 }
 
-/* 3. Thẻ Thành viên */
+
+.member-track {
+    display: flex;
+    transition: transform 0.3s ease-out;
+    /* Dùng cho hiệu ứng chuyển động */
+    padding-bottom: 20px;
+}
+
+
 .member-card {
     min-width: 250px;
     max-width: 280px;
@@ -208,7 +214,7 @@ p {
     font-weight: 600;
 }
 
-/* 4. Điều khiển */
+
 .carousel-controls {
     margin-top: 20px;
 }
@@ -234,96 +240,16 @@ p {
     background-color: #f0f0f0;
 }
 
-/* --- Section: Team (Thành Viên) - Static Grid Layout --- */
-#section-content-thanhvien {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
 
-.team-row {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-    margin-bottom: 20px;
-}
+/* RESPONSIVE */
 
-#col-inner-thanhvien {
-    margin: 15px;
-    height: auto;
-    width: 250px; /* Base width */
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 10px;
-    transition: transform 0.3s ease;
-}
-
-#col-inner-thanhvien:hover {
-    transform: translateY(-5px);
-}
-
-#col-inner-thanhvien img {
-    width: 150px; /* Base image size */
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 15px;
-    border: 3px solid #f0f0f0;
-}
-
-#box-text-info {
-    text-align: center;
-}
-
-#box-text-info h4 {
-    margin: 0;
-    margin-bottom: 5px;
-    font-size: 1.2em;
-}
-
-#member img {
-    width: 10%;
-    height: 100px;
-}
-
-#box-text-info a {
-    text-decoration: none;
-    color: #333;
-}
-
-#box-text-info a:hover {
-    color: #EB731A;
-}
-
-#box-text-info p {
-    margin: 0;
-    font-size: 0.9em;
-    color: #555;
-    font-style: italic;
-    text-align: center;
-}
-
-
-/* ---------------------------------------------------------------------- */
-/* --- Responsive Design (Media Queries) --- */
-/* ---------------------------------------------------------------------- */
-
-/* Breakpoint 1: Màn hình lớn/Desktop (<= 1200px) */
 @media only screen and (max-width: 1200px) {
     #section-gioithieu {
         padding: 50px 40px;
     }
 
     #section-gioithieu img {
-        max-width: 400px; /* Giảm ảnh giới thiệu */
+        max-width: 400px;
     }
 
     #section-content {
@@ -337,13 +263,11 @@ p {
     }
 }
 
-/* Breakpoint 2: Laptop/Tablet Ngang (<= 1024px) */
 @media only screen and (max-width: 1024px) {
     #main_page {
-        height: 500px; /* Giảm chiều cao banner */
+        height: 500px;
     }
 
-    /* Bố cục giới thiệu chuyển thành cột */
     #section-gioithieu {
         flex-direction: column;
         padding: 50px 30px;
@@ -352,7 +276,7 @@ p {
     #section-gioithieu img {
         max-width: 80%;
         margin: 20px auto;
-        order: -1; /* Đặt ảnh lên trên */
+        order: -1;
     }
 
     #section-content {
@@ -362,11 +286,10 @@ p {
     }
 
     #section-content p[style] {
-        font-size: 30px !important; /* Giảm cỡ chữ tiêu đề */
+        font-size: 30px !important;
         text-align: center !important;
     }
 
-    /* Bố cục Tuyên Ngôn */
     #main-tuyen-ngon {
         flex-wrap: wrap;
         gap: 20px;
@@ -378,40 +301,30 @@ p {
         margin: 15px auto;
     }
 
-    /* Bố cục Thành Viên (3 cột) */
-    #col-inner-thanhvien {
-        width: calc(33.333% - 30px);
-        max-width: 280px;
-    }
+
 }
 
 
-/* Breakpoint 3: Tablet Dọc/Mobile Lớn (<= 768px) */
 @media only screen and (max-width: 768px) {
     #main_page {
-        height: 300px; /* Giảm chiều cao banner */
+        height: 300px;
     }
 
     #section-gioithieu {
         padding: 30px 15px;
     }
-    
-    .member-card {
-        width: 50%;
-        height: 50%;
-    }
 
-    /* Bố cục team chuyển thành cột (được override bởi quy tắc 2 cột bên dưới) */
+    /* Đã xóa width: 50% gây xung đột */
+
     .team-row {
         display: flex;
-        flex-direction: column; 
+        flex-direction: column;
     }
 
     #section-thanhvien h2 {
         font-size: 2em;
     }
 
-    /* Bố cục Tuyên Ngôn (Gần như 1 cột) */
     #col-inner {
         width: 90%;
         min-width: 280px;
@@ -420,37 +333,5 @@ p {
 
     #section-content p {
         font-size: 16px;
-    }
-
-    /* Bố cục Thành Viên (2 cột) */
-    #col-inner-thanhvien {
-        width: calc(50% - 30px);
-        max-width: 350px;
-        margin: 15px;
-        padding: 20px 10px;
-    }
-
-    #col-inner-thanhvien img {
-        width: 120px; /* Giảm kích thước ảnh thành viên */
-        height: 120px;
-    }
-}
-
-
-/* Breakpoint 4: Mobile (<= 576px) */
-@media only screen and (max-width: 576px) {
-
-    /* Bố cục Thành Viên (1 cột) */
-    #col-inner-thanhvien {
-        width: 90%;
-        max-width: 400px;
-        margin: 15px auto;
-        padding: 25px 0;
-    }
-
-    #col-inner-thanhvien img {
-        width: 150px; /* Tăng kích thước ảnh thành viên trở lại */
-        height: 150px;
-        margin-bottom: 20px;
     }
 }

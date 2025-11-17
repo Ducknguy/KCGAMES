@@ -59,7 +59,6 @@
     </div>
 
     <script>
-        // === HÀM TÁI SỬ DỤNG: LOGIC MENU MOBILE (GIỮ NGUYÊN) ===
         function initializeMobileMenu() {
             const navbar = document.getElementById('navbar');
             const mobileToggle = document.getElementById('mobile-toggle');
@@ -81,7 +80,6 @@
             }
         }
 
-        // === HÀM TÁI SỬ DỤNG: LOGIC ACTIVE LINK (GIỮ NGUYÊN) ===
         function setActiveNav() {
             const navLinkEls = document.querySelectorAll('.nav_link');
             const windowPathname = window.location.pathname;
@@ -97,7 +95,6 @@
             });
         }
 
-        // === HÀM TẢI VÀ CHÈN HTML BẤT ĐỒNG BỘ (GIỮ NGUYÊN) ===
         async function loadHTML(url, containerId, callback = () => { }) {
             try {
                 const response = await fetch(url);
@@ -106,11 +103,10 @@
                 }
                 const htmlContent = await response.text();
 
-                // Đảm bảo phần tử tồn tại trước khi chèn
                 const container = document.getElementById(containerId);
                 if (container) {
                     container.innerHTML = htmlContent;
-                    callback(); // GỌI CALLBACK SAU KHI HTML ĐÃ ĐƯỢC CHÈN
+                    callback();
                 } else {
                     console.error(`LỖI: Không tìm thấy container ID '${containerId}'`);
                 }
@@ -139,14 +135,10 @@
             loadGTranslate();
         }
 
-        // === THỰC THI CHƯƠNG TRÌNH ===
         document.addEventListener('DOMContentLoaded', () => {
-            // ❌ LỖI TRƯỚC ĐÂY: Bạn gọi setActiveNav() thay vì afterHeaderLoad().
-            // SỬA: Thay setActiveNav bằng afterHeaderLoad để khởi tạo cả menu mobile.
             loadHTML('./html/client/header.html', 'header_lienhe', afterHeaderLoad);
             loadHTML('./html/client/footer.html', 'footer_lienhe');
 
-            // === LOGIC GỬI FORM (GIỮ NGUYÊN) ===
             const form = document.getElementById('section-content');
 
             if (!form) {

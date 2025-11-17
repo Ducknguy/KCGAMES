@@ -1,6 +1,4 @@
-// server.js
 
-// 1. Tải các thư viện cần thiết
 require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
@@ -10,24 +8,21 @@ const sgMail = require('@sendgrid/mail');
 
 const app = express();
 
-// 2. Lấy thông tin từ Biến Môi Trường (.env)
 const PORT = process.env.PORT || 3000;
 const SENDER_EMAIL = process.env.SENDER_EMAIL;
 const RECEIVER_EMAIL = process.env.RECEIVER_EMAIL;
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 
-// 3. Kiểm tra cấu hình và Khởi tạo SendGrid
+
 if (!SENDER_EMAIL || !RECEIVER_EMAIL || !SENDGRID_API_KEY) {
     console.error("LỖI CẤU HÌNH: Thiếu SENDER_EMAIL, RECEIVER_EMAIL, hoặc SENDGRID_API_KEY trong file .env!");
     process.exit(1);
 }
 sgMail.setApiKey(SENDGRID_API_KEY);
 
-
-// 4. Cấu hình Multer để upload CV (Lưu trong bộ nhớ)
 const upload = multer({
     storage: multer.memoryStorage(),
-    limits: { fileSize: 5 * 1024 * 1024 } // Tối đa 5MB
+    limits: { fileSize: 5 * 1024 * 1024 }
 }).single('resume');
 
 
@@ -77,7 +72,6 @@ app.get('/:pageName', (req, res) => {
 app.post('/api/send-application', (req, res) => {
     upload(req, res, async (err) => {
         try {
-            // Xử lý lỗi Multer
             if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
                 return res.status(400).json({ success: false, message: 'File CV quá lớn (tối đa 5MB).' });
             } else if (err) {
@@ -93,7 +87,6 @@ app.post('/api/send-application', (req, res) => {
             const safeNotes = notes ? notes.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'Không có ghi chú.';
             const attachments = bufferToAttachment(file.buffer, file.originalname);
 
-            // 1️⃣ Gửi mail cho nhà tuyển dụng (kèm CV)
             const recruiterMail = {
                 from: `${full_name} (Ứng Tuyển) <${SENDER_EMAIL}>`,
                 to: RECEIVER_EMAIL,
@@ -142,7 +135,6 @@ app.post('/api/send-application', (req, res) => {
 
             await sgMail.send(recruiterMail);
 
-            // 2️⃣ Gửi email xác nhận cho ứng viên
             const confirmationMail = {
                 from: `KCGAMES HR <${SENDER_EMAIL}>`,
                 to: email,
@@ -181,8 +173,8 @@ app.post('/api/send-contact', async (req, res) => {
             subject: `[LIÊN HỆ MỚI] Từ ${full_name}`,
             html: `
                 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-                    <h2 style="color: #ffc107; border-bottom: 2px solid #eee; padding-bottom: 10px;">
-                        Thông tin Liên hệ Mới
+                    <h2 style="color: #000000ff; border-bottom: 2px solid #eee; padding-bottom: 10px;">
+                        Thông tin Liên hệ 
                     </h2>
                     <table cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
                         <tr>
