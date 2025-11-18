@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+   "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf dist",  
+    "copy": "copyfiles *.html *.css *.js **/*.{png,jpg,svg} dist", 
+    "build": "yarn clean && yarn copy"
   },
   "repository": {
     "type": "git",
@@ -29,5 +32,9 @@
     "nodemailer": "^7.0.10",
     "resend": "^6.4.2",
     "sib-api-v3-sdk": "^8.5.0"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "rimraf": "^6.1.0"
   }
 }
