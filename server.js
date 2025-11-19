@@ -104,7 +104,8 @@ app.use(
 
             "frame-src": [
                 "'self'",
-                "https://translate.google.com"
+                "https://translate.google.com",
+                "https://www.google.com"
             ]
         }
     })
