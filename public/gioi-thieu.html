@@ -18,7 +18,7 @@
 
     <img id="main_page" src="/public/Image/Thanhvien/BackgroundKhoanhTay.jpg" alt="">
 
-    <section id="section-gioithieu">
+    <section id="section-gioithieu" class="scroll-reveal">
         <div id="section-content">
             <p style="font-size: 40px;margin-bottom: 10px;font-weight: 600;"> Chúng tôi là ai</p>
             <br>
@@ -46,8 +46,8 @@
         <img src="/public/Image/muctieu-2.png" alt="">
     </section>
 
-    <section>
-        <div id="section-tuyen-ngon">
+    <section id="tuyenngon">
+        <div id="section-tuyen-ngon" class="scroll-reveal">
             <div id="section-content">
                 <h2>TUYÊN NGÔN SỨ MỆNH</h2>
                 <div id="main-tuyen-ngon">
@@ -88,7 +88,7 @@
         </div>
     </section>
 
-    <section id="section-thanhvien">
+    <section id="section-thanhvien" class="scroll-reveal">
         <h2>THÀNH VIÊN</h2>
 
         <div class="member-card member-fixed">
@@ -191,6 +191,23 @@
 
     <script src="/public/team-js/team1.js"></script>
     <script src="/public/js/gioithieu.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".scroll-reveal");
+
+    const reveal = () => {
+        const trigger = window.innerHeight * 0.85;
+
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect().top;
+            if (rect < trigger) el.classList.add("active");
+        });
+    };
+
+    window.addEventListener("scroll", reveal);
+    reveal();
+});
+</script>
     <div id="footer_gioi_thieu"></div>
 </body>
 

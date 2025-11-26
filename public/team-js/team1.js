@@ -1,4 +1,6 @@
-// /public/team-js/team1.js - TRUE Infinite Continuous Carousel (No Jump)
+// /public/team-js/team1.js
+// Infinite Carousel kiểu nhân 3 dải + quán tính desktop
+// Không dùng scroll-behavior để reset, nên không bị lộ jump
 
 document.addEventListener("DOMContentLoaded", () => {
     const wrapper = document.querySelector(".carousel-wrapper");
@@ -8,74 +10,117 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!wrapper || !track || !nextBtn || !prevBtn) return;
 
-    let isDragging = false;
-    let startX = 0;
-    let scrollLeft = 0;
-
+    // -----------------------------
+    // 1. Chuẩn bị dữ liệu cơ bản
+    // -----------------------------
     const baseCards = Array.from(track.children);
     const baseCount = baseCards.length;
 
-    // Lấy chiều rộng 1 card
-    const getCardWidth = () => baseCards[0].offsetWidth + 30;
+    if (baseCount === 0) return;
 
-    // Clone card vào cuối khi gần hết
-    const ensureForwardInfinite = () => {
-        const cardWidth = getCardWidth();
+    // Lấy chiều rộng 1 card + margin ngang
+    const getCardWidth = () => {
+        const card = track.querySelector(".member-card");
+        if (!card) return 300;
 
-        // Nếu đã cuộn đến 70% cuối → clone thêm 1 vòng card
-        if (wrapper.scrollLeft + wrapper.clientWidth > track.scrollWidth - cardWidth * 2) {
-            baseCards.forEach((card) => {
-                const clone = card.cloneNode(true);
-                clone.classList.add("clone");
-                track.appendChild(clone);
-            });
-        }
+        const rect = card.getBoundingClientRect();
+        const style = window.getComputedStyle(card);
+        const marginLeft = parseFloat(style.marginLeft) || 0;
+        const marginRight = parseFloat(style.marginRight) || 0;
+
+        return rect.width + marginLeft + marginRight;
     };
 
-    // Clone card vào đầu khi kéo về đầu
-    const ensureBackwardInfinite = () => {
-        const cardWidth = getCardWidth();
+    // -----------------------------
+    // 2. Nhân track thành 3 lần
+    // -----------------------------
+    const baseHTML = track.innerHTML;
+    track.innerHTML = baseHTML + baseHTML + baseHTML; // 3 dải liên tiếp
 
-        // Nếu gần đầu → thêm 1 vòng card vào ĐẦU track
-        if (wrapper.scrollLeft < cardWidth * 2) {
-            const currentScroll = wrapper.scrollLeft;
+    // Sau khi nhân 3, tính lại chiều rộng 1 vòng (reel)
+    let reelWidth; // chiều rộng 1 dải = 1 lần danh sách gốc
 
-            baseCards.forEach((card) => {
-                const clone = card.cloneNode(true);
-                clone.classList.add("clone");
-                track.insertBefore(clone, track.firstElementChild);
-            });
-
-            // Giữ vị trí scroll để không bị giật
-            wrapper.scrollLeft = currentScroll + baseCount * cardWidth;
-        }
+    const recalcReelWidth = () => {
+        // Tổng width chia cho 3 vì mình nhân đúng 3 lần
+        reelWidth = track.scrollWidth / 3;
     };
 
-    // Drag / swipe
+    recalcReelWidth();
+
+    // Đặt scroll ở GIỮA (dải thứ 2) để có buffer 2 bên
+    wrapper.scrollLeft = reelWidth;
+
+    // -----------------------------
+    // 3. Quán tính kéo (desktop)
+    // -----------------------------
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+    let velocity = 0;
+    let lastX = 0;
+    let momentumID = null;
+
+    const stopMomentum = () => {
+        if (momentumID) cancelAnimationFrame(momentumID);
+        momentumID = null;
+        velocity = 0;
+    };
+
+    const applyMomentum = () => {
+        if (Math.abs(velocity) < 0.1) return;
+
+        wrapper.scrollLeft -= velocity;
+        velocity *= 0.95; // độ “trôi” (0.9 = trôi xa hơn, 0.98 = siêu xa)
+
+        momentumID = requestAnimationFrame(applyMomentum);
+    };
+
+    // Drag desktop
     wrapper.addEventListener("mousedown", (e) => {
         isDragging = true;
         wrapper.classList.add("dragging");
-        startX = e.pageX - wrapper.offsetLeft;
-        scrollLeft = wrapper.scrollLeft;
+        wrapper.style.cursor = "grabbing";
+
+        stopMomentum();
+
+        startX = e.clientX;
+        startScrollLeft = wrapper.scrollLeft;
+        lastX = e.clientX;
+        velocity = 0;
     });
 
     document.addEventListener("mouseup", () => {
+        if (!isDragging) return;
         isDragging = false;
         wrapper.classList.remove("dragging");
+        wrapper.style.cursor = "grab";
+
+        applyMomentum(); // bắt đầu quán tính
     });
 
     document.addEventListener("mousemove", (e) => {
         if (!isDragging) return;
-        const x = e.pageX - wrapper.offsetLeft;
-        const walk = (x - startX) * 1.3;
-        wrapper.scrollLeft = scrollLeft - walk;
+
+        const x = e.clientX;
+        const dx = x - startX;
+
+        wrapper.scrollLeft = startScrollLeft - dx;
+
+        // tính velocity dựa trên di chuyển chuột
+        velocity = x - lastX;
+        lastX = x;
     });
 
-    // Touch mobile
+    // -----------------------------
+    // 4. Touch (mobile) – dùng quán tính native
+    // -----------------------------
     wrapper.addEventListener("touchstart", (e) => {
         isDragging = true;
-        startX = e.touches[0].pageX - wrapper.offsetLeft;
-        scrollLeft = wrapper.scrollLeft;
+        stopMomentum();
+
+        startX = e.touches[0].clientX;
+        startScrollLeft = wrapper.scrollLeft;
     });
 
     document.addEventListener("touchend", () => {
@@ -84,28 +129,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("touchmove", (e) => {
         if (!isDragging) return;
-        const x = e.touches[0].pageX - wrapper.offsetLeft;
-        const walk = (x - startX) * 1.3;
-        wrapper.scrollLeft = scrollLeft - walk;
+        const x = e.touches[0].clientX;
+        const dx = x - startX;
+        wrapper.scrollLeft = startScrollLeft - dx;
     });
 
-    // Next / prev
+    // -----------------------------
+    // 5. Logic loop “vô tận” (không lộ)
+    // -----------------------------
+    const handleInfiniteLoop = () => {
+        const x = wrapper.scrollLeft;
+
+        // Nếu trôi quá sang trái (gần hết dải thứ 1) → đẩy lên +1 dải
+        if (x < reelWidth * 0.5) {
+            wrapper.scrollLeft = x + reelWidth;
+        }
+        // Nếu trôi quá sang phải (gần dải thứ 3) → kéo xuống -1 dải
+        else if (x > reelWidth * 1.5) {
+            wrapper.scrollLeft = x - reelWidth;
+        }
+        // Do nội dung 3 dải y hệt nhau, việc cộng/trừ reelWidth là “vô hình”
+    };
+
+    wrapper.addEventListener("scroll", handleInfiniteLoop);
+
+    // -----------------------------
+    // 6. Nút Next / Prev
+    // -----------------------------
+    let btnAnimID = null;
+
+    const smoothScrollBy = (delta) => {
+        stopMomentum();
+        if (btnAnimID) cancelAnimationFrame(btnAnimID);
+
+        const start = wrapper.scrollLeft;
+        const duration = 300;
+        const startTime = performance.now();
+
+        const animate = (now) => {
+            const elapsed = now - startTime;
+            const t = Math.min(elapsed / duration, 1);
+            // easing nhẹ
+            const ease = 0.5 - 0.5 * Math.cos(Math.PI * t);
+            wrapper.scrollLeft = start + delta * ease;
+
+            if (t < 1) {
+                btnAnimID = requestAnimationFrame(animate);
+            }
+        };
+
+        btnAnimID = requestAnimationFrame(animate);
+    };
+
     nextBtn.addEventListener("click", () => {
-        wrapper.scrollLeft += getCardWidth();
+        smoothScrollBy(getCardWidth());
     });
 
     prevBtn.addEventListener("click", () => {
-        wrapper.scrollLeft -= getCardWidth();
+        smoothScrollBy(-getCardWidth());
     });
 
-    // Lặp vô hạn thật sự
-    wrapper.addEventListener("scroll", () => {
-        ensureForwardInfinite();
-        ensureBackwardInfinite();
+    // -----------------------------
+    // 7. Recalc khi resize (optional)
+    // -----------------------------
+    window.addEventListener("resize", () => {
+        const oldReel = reelWidth;
+        recalcReelWidth();
+        // Giữ tỉ lệ vị trí khi thay đổi width
+        const ratio = wrapper.scrollLeft / oldReel;
+        wrapper.scrollLeft = reelWidth * ratio;
     });
-
-    // Khởi tạo → clone 2 vòng để track dài ngay từ đầu
-    baseCards.forEach((c) => track.appendChild(c.cloneNode(true)));
-    baseCards.forEach((c) => track.appendChild(c.cloneNode(true)));
-
 });
