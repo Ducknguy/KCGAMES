@@ -51,7 +51,9 @@ body {
     align-items: center;
 }
 
-
+#activity{
+    display: flex;
+}
 #col-inner {
     background-color: #FFF;
     border-radius: 8px;

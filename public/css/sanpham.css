@@ -100,6 +100,9 @@ body {
     opacity: 1;
 }
 
+.game-overlay a{
+    font-size: 32px;
+}
 
 .view-more-link {
     color: #fff;
