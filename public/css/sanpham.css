@@ -21,6 +21,7 @@ body {
     margin: 0;
     height: 700px;
     object-fit: cover;
+    padding-top: 150px;
 }
 
 #section-sanpham {

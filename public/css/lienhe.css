@@ -21,12 +21,11 @@ body {
 }
 
 #main_page {
-    width: 100%;
-    display: block;
-    height: auto;
-    max-height: 420px;
-    object-fit: cover;
+   width: 100%;
     margin: 0;
+    height: 700px;
+    object-fit: cover;
+    padding-top: 150px;
 }
 
 
