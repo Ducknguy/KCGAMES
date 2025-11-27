@@ -113,13 +113,26 @@ app.use(
 );
 
 
+app.use((req, res, next) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'unsafe-none');
+    res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none');
+    res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+    next();
+});
 
-app.use('/public', express.static('public'));
-// app.use('/html', express.static(path.join(__dirname, 'public', 'html')));app.use(express.static(path.join(__dirname, 'public')));
-app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
-app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
-app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
-app.use('/activities', express.static(path.join(__dirname, 'public', 'activities')));
+// app.use('/public', express.static('public'));
+// // app.use('/html', express.static(path.join(__dirname, 'public', 'html')));app.use(express.static(path.join(__dirname, 'public')));
+// app.use('/public/css', express.static(path.join(__dirname, 'public', 'css')));
+// app.use('/public/Image', express.static(path.join(__dirname, 'public', 'images')));
+// app.use('/public/activities', express.static(path.join(__dirname, 'public', 'activities')));
+// app.use('/public/js', express.static(path.join(__dirname, 'public', 'js')));
+
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/html', express.static(path.join(__dirname, 'public', 'html')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 function bufferToAttachment(buffer, filename) {
     return [
