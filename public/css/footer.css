@@ -23,8 +23,8 @@
 }
 
 #footer-logo .footer-logo {
-    width: 110px;
-    height: 110px;
+    width: 200px;
+    height: 200px;
     margin-bottom: 10px;
 }
 
@@ -103,6 +103,7 @@
     .footer-col {
         min-width: 100%;
     }
+  
 }
 
 @media (max-width: 480px) {
