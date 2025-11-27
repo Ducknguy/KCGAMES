@@ -113,6 +113,12 @@ app.use(
 );
 
 
+app.use((req, res, next) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'unsafe-none');
+    res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none');
+    res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+    next();
+});
 
 // app.use('/public', express.static('public'));
 // // app.use('/html', express.static(path.join(__dirname, 'public', 'html')));app.use(express.static(path.join(__dirname, 'public')));
