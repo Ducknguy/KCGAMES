@@ -213,6 +213,8 @@ body {
 
     #main_page {
         height: 250px;
+
+        padding-top: 0;
     }
 
     #section-sanpham {

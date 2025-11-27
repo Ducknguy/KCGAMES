@@ -206,3 +206,9 @@ textarea:focus {
 .hidden {
     display: none !important;
 }
+@media only screen and (max-width: 768px){
+    #main_page{
+        height: auto;
+        padding-top: 0;
+    }
+}

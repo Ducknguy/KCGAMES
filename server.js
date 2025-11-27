@@ -7,6 +7,7 @@ const multer = require('multer');
 const sgMail = require('@sendgrid/mail');
 const rateLimit = require("express-rate-limit");
 const Joi = require('joi');
+const os = require('os');//sua
 
 const app = express();
 
@@ -349,10 +350,32 @@ app.use((err, req, res, next) => {
         });
     }
 });
+function getServerInfo() {
+    const isProduction = process.env.NODE_ENV === 'production';
+    const networkIP = getNetworkIP();
+    
+    return {
+         local: `http://localhost:${PORT}`,
+        network: `http://${networkIP}:${PORT}`,
+        isProduction,
+    };
+}
+// app.listen(PORT, () => {
+//     console.log(`Server đang chạy tại http://localhost:${PORT}.`);
+//     console.log(`Frontend: Truy cập trang chủ tại http://localhost:${PORT}/`);
+// });
 
 app.listen(PORT, () => {
-    console.log(`Server đang chạy tại http://localhost:${PORT}.`);
-    console.log(`Frontend: Truy cập trang chủ tại http://localhost:${PORT}/`);
+    const { local, network, isProduction } = getServerInfo();
+    
+ console.log("✅ Server đã khởi động thành công!");
+console.log(`📍 Port: ${PORT}`);
+console.log(`🚀 Local: ${local}`);
+    if (!isProduction) {
+       console.log(`🌐 Network: ${network}`);
+    }
+    
+    console.log(`🎯 Frontend: ${local}`);
 });
 
 module.exports = app;

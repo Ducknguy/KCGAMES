@@ -333,6 +333,7 @@ img {
 
     #main_page {
         height: 300px;
+        padding-top: 0;
     }
 
     #main_about img {
