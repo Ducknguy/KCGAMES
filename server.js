@@ -114,7 +114,7 @@ app.use(
 
 
 
-// app.use('/public', express.static('public'));
+app.use('/public', express.static('public'));
 // app.use('/html', express.static(path.join(__dirname, 'public', 'html')));app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
 app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
@@ -370,9 +370,9 @@ function getNetworkIP() {
 function getServerInfo() {
     const isProduction = process.env.NODE_ENV === 'production';
     const networkIP = getNetworkIP();
-    
+
     return {
-         local: `http://localhost:${PORT}`,
+        local: `http://localhost:${PORT}`,
         network: `http://${networkIP}:${PORT}`,
         isProduction,
     };
@@ -384,14 +384,14 @@ function getServerInfo() {
 
 app.listen(PORT, () => {
     const { local, network, isProduction } = getServerInfo();
-    
- console.log("✅ Server đã khởi động thành công!");
-console.log(`📍 Port: ${PORT}`);
-console.log(`🚀 Local: ${local}`);
+
+    console.log("✅ Server đã khởi động thành công!");
+    console.log(`📍 Port: ${PORT}`);
+    console.log(`🚀 Local: ${local}`);
     if (!isProduction) {
-       console.log(`🌐 Network: ${network}`);
+        console.log(`🌐 Network: ${network}`);
     }
-    
+
     console.log(`🎯 Frontend: ${local}`);
 });
 
