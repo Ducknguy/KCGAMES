@@ -1,150 +1,119 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 #footer {
     display: flex;
-    background-color: #161324;
-    color: #fff;
-    padding: 50px 80px;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 30px;
-}
-
-#col-inner1,
-#col-inner2,
-#col-inner3 {
-    padding: 0;
-    flex-grow: 1;
-    min-width: 250px;
-}
-
-#col-inner1 {
-    min-width: 300px;
-    margin-left: 0;
-}
-
-#col-inner2 {
-    max-width: 250px;
-}
-
-#col-inner3 {
-    max-width: 200px;
-    text-align: center;
-}
-
-#categories_item li a {
-    text-decoration: none;
-    font-size: 16px;
+    background: black;
     color: #fff;
-    transition: 0.3s ease;
-    white-space: nowrap;
-}
-
-.poppins-light {
+    padding: 60px 80px;
+    gap: 40px;
     font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-style: normal;
 }
 
-#catrgories_item li {
-    list-style: none;
-    padding: 0 20px;
-    position: relative;
+.footer-col {
+    flex: 1;
+    min-width: 260px;
 }
 
-ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-#menulink {
-    padding-bottom: 5px;
-}
-
-#menulink li {
-    padding: 0;
-}
-
-#menulink li a:hover {
-    color: #ea7225;
-}
-
-#categories_item {
-    padding-top: 0 !important;
+#footer-logo .footer-logo {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 10px;
 }
 
 #footer h3 {
-    font-size: 2.5rem;
-    /* 40px */
-    padding-bottom: 20px;
-    margin-top: 0;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-.bx {
-    vertical-align: middle;
+.footer-col ul li {
+    list-style: none;
+    margin-bottom: 12px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    opacity: 0.9;
 }
 
-@media only screen and (max-width: 1200px) {
+.footer-col ul li i {
+    margin-right: 8px;
+    font-size: 22px;
+    color: #ea7225;
+}
+
+#footer-menu a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+    opacity: 0.85;
+    transition: 0.3s;
+}
+
+#footer-menu a:hover {
+    color: #ea7225;
+    padding-left: 4px;
+}
+
+#footer-social i {
+    font-size: 65px;
+    color: #fff;
+    transition: 0.3s;
+}
+
+#footer-social i:hover {
+    color: #ea7225;
+    transform: scale(1.1);
+}
+
+/* 🔥 Hover Glow Effect */
+#footer-menu li:hover,
+#footer-logo ul li:hover {
+    transform: translateX(4px);
+    transition: 0.3s ease-in-out;
+}
+
+/* 📱 Responsive */
+@media (max-width: 992px) {
     #footer {
-        padding: 40px 60px;
-    }
-
-    #col-inner1 {
-        min-width: 280px;
-    }
-
-    #footer h3 {
-        font-size: 2rem;
-    }
-}
-
-@media only screen and (max-width: 1024px) {
-    #footer {
-        padding: 40px 40px;
-        justify-content: space-around;
-    }
-
-    #col-inner1 {
-        min-width: 40%;
-    }
-
-    #col-inner2 {
-        min-width: 40%;
-        max-width: 40%;
-    }
-
-    #col-inner3 {
-        width: 100%;
-        margin-top: 30px;
-        max-width: 100%;
-        text-align: left;
-    }
-
-    #col-inner3 h3 {
-        text-align: left;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    #footer {
-        padding: 30px 20px;
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    #col-inner1,
-    #col-inner2,
-    #col-inner3 {
-        min-width: 100%;
-        max-width: 100%;
-        text-align: left;
-    }
-
-    #col-inner3 {
-        margin-top: 0;
+        padding: 50px 40px;
     }
 
     #footer h3 {
         font-size: 1.8rem;
     }
+}
+
+@media (max-width: 768px) {
+    #footer {
+        flex-direction: column;
+        padding: 40px 25px;
+        text-align: left;
+    }
+
+    .footer-col {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    #footer h3 {
+        font-size: 1.6rem;
+    }
+
+    #footer-social i {
+        font-size: 55px;
+    }
+}
+#footer h3{
+    color:#ff6200;
 }
