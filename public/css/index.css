@@ -40,6 +40,7 @@ img {
     height: 600px;
     margin: 0;
     object-fit: cover;
+    padding-top: 150px;
 }
 
 #about_we {
@@ -133,6 +134,7 @@ img {
     margin: 10px;
     flex-shrink: 0;
     border-radius: 10px;
+    max-width: 25%;
 }
 
 #box_text {
