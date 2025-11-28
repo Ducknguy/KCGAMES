@@ -28,6 +28,15 @@ body {
     color: #2C3E50;
 }
 
+.detail-gallery img,
+#detail-gallery img{
+    width: 220px;     
+    height: 140px;     
+    object-fit: contain; 
+    border-radius: 8px;
+    display: block;
+}
+
 /* Cover */
 .detail-cover {
     width: 100%;
@@ -86,9 +95,9 @@ body {
 /* Lightbox */
 .lightbox {
     position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    display: none;
+    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    background: rgba(0, 0, 0, 0.8);
+    display: none;       /* JS sẽ đổi thành flex khi mở */
     justify-content: center;
     align-items: center;
     z-index: 9999;
@@ -101,9 +110,10 @@ body {
 }
 
 .lightbox img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 6px;
+   max-width: 90vw;     /* không rộng quá 90% màn hình */
+    max-height: 90vh;    /* không cao quá 90% màn hình */
+    object-fit: contain; /* luôn fit vào khung, không bị méo */
+    border-radius: 10px;
 }
 
 .lightbox-close {
