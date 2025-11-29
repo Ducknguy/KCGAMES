@@ -1,8 +1,9 @@
-name: Deploy Kcgames web
+name: Deploy kcgames web
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -19,11 +20,12 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy Kcgames web
+      - name: Deploy kcgames web
         run: |
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
-            cd /var/www/KCGAMES &&
-            git pull &&
-            npm install &&
-            pm2 restart all
-          "
+          ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+              cd /var/www/KCGAMES &&
+              git pull &&
+              npm install --production &&
+              pm2 restart all
+            "
