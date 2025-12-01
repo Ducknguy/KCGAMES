@@ -119,8 +119,8 @@ function setupApplyForm() {
 // =============== ENTRY POINT ===============
 document.addEventListener("DOMContentLoaded", () => {
     // Header & footer cho trang apply form
-    loadHTML("./header.html", "header_apply_form", afterHeaderLoad);
-    loadHTML("./footer.html", "footer_apply_form");
+    loadHTML("/public/html/client/header.html", "header_apply_form", afterHeaderLoad);
+    loadHTML("/public/html/client/footer.html", "footer_apply_form");
 
     // Xử lý form ứng tuyển
     setupApplyForm();

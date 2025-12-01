@@ -142,6 +142,46 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.get('/hoat-dong', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'hoatdong.html'));
+});
+
+app.get('/gioi-thieu', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'gioi-thieu.html'));
+});
+
+app.get('/san-pham', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'sanpham.html'));
+});
+
+app.get('/tuyen-dung', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'tuyendung.html'));
+});
+
+app.get('/lien-he', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'lienhe.html'));
+});
+app.get('/trang-chu', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+app.get('/backend', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'backend.html'));
+});
+app.get('/game-design', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'gamedesigne.html'));
+});
+app.get('/unity-developer', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'unitydevelop.html'));
+});
+app.get('/marketing', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'marketing.html'));
+});
+app.get('/apply', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'apply-form.html'));
+});
+
+
+
 function bufferToAttachment(buffer, filename) {
     return [
         {
@@ -160,6 +200,7 @@ app.get('/', (req, res) => {
 app.get('/:pageName', (req, res) => {
     const page = req.params.pageName;
     const filePath = path.join(__dirname, 'public', `${page}.html`);
+
 
     res.sendFile(filePath, (err) => {
         if (err) {

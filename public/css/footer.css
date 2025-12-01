@@ -6,115 +6,210 @@
     box-sizing: border-box;
 }
 
-#footer {
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0;
+}
+
+footer {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(to right, #0a1628, #341a1a);
+    color: #fff;
+    padding: 70px 0 0;
+}
+
+.footer-content {
     display: flex;
     justify-content: space-between;
+    padding: 0 8% 50px;
     flex-wrap: wrap;
-    background: black;
-    color: #fff;
-    padding: 60px 80px;
-    gap: 40px;
-    font-family: "Poppins", sans-serif;
 }
 
 .footer-col {
-    flex: 1;
-    min-width: 260px;
+    flex-basis: 24%;
+    min-width: 250px;
 }
 
-#footer-logo .footer-logo {
+.footer-col h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.footer-col h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: #eb731a;
+    height: 3px;
+    width: 50px;
+}
+
+.footer-col h3 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    position: relative;
+    font-weight: 600;
+}
+
+.footer-col h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: #eb731a;
+    height: 3px;
+    width: 50px;
+}
+.bxs-map{
+    padding-right: 2px;
+    color: #eb731a;
+}
+.bxl-gmail{
+    padding-right: 5px;
+    color: #eb731a;
+}
+.bxs-phone-call{
+    padding-right: 5px;
+    color: #eb731a;
+    font-size: 24px;
+}
+
+.footer-col p {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    color: #ccc;
+    font-weight: 300;
+}
+
+.footer-col .email {
+    width: fit-content;
+    margin: 20px 0;
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+
+.footer-col .footer-logo {
     width: 200px;
     height: 200px;
     margin-bottom: 10px;
 }
 
-#footer h3 {
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+/* Social Icons Styles */
+.social-icons {
+    display: flex;
+    gap: 15px;
 }
 
-.footer-col ul li {
-    list-style: none;
-    margin-bottom: 12px;
-    font-size: 16px;
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #0a1628;
     display: flex;
     align-items: center;
-    opacity: 0.9;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+.col-social{
+    margin-left: 50px;
+}
+.social-icons a:hover {
+    background-color: #eb731a;
+    color: #fff;
+    transform: translateY(-5px);
 }
 
-.footer-col ul li i {
-    margin-right: 8px;
-    font-size: 22px;
-    color: #ea7225;
+/* Download Section Styles */
+.download-text {
+    margin-bottom: 25px;
+    line-height: 1.6;
 }
 
-#footer-menu a {
+.store-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    background-color: #fff;
+    color: #0078d4;
+    border-radius: 30px;
     text-decoration: none;
     font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.store-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: #eb731a;
+    
+}
+.store-btn:hover i{
     color: #fff;
-    opacity: 0.85;
-    transition: 0.3s;
 }
-
-#footer-menu a:hover {
-    color: #ea7225;
-    padding-left: 4px;
-}
-
-#footer-social i {
-    font-size: 65px;
+.store-btn:hover span{
     color: #fff;
-    transition: 0.3s;
 }
 
-#footer-social i:hover {
-    color: #ea7225;
-    transform: scale(1.1);
+.store-btn i {
+    font-size: 24px;
 }
 
-/* 🔥 Hover Glow Effect */
-#footer-menu li:hover,
-#footer-logo ul li:hover {
-    transform: translateX(4px);
-    transition: 0.3s ease-in-out;
+.store-btn:nth-child(1) {
+    color: #0078d4;
 }
 
-/* 📱 Responsive */
-@media (max-width: 992px) {
-    #footer {
-        padding: 50px 40px;
-    }
-
-    #footer h3 {
-        font-size: 1.8rem;
-    }
+.store-btn:nth-child(2) {
+    color: #000;
 }
 
+footer hr {
+    width: 90%;
+    margin: 0 auto;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.copyright {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    #footer {
+    .footer-content {
         flex-direction: column;
-        padding: 40px 25px;
-        text-align: left;
+        padding: 0 5% 30px;
+    }
+    .footer-col .footer-logo{
+        width: 150px;
+        height: 150px;
     }
 
     .footer-col {
-        min-width: 100%;
+        flex-basis: 100%;
+        margin-bottom: 30px;
     }
-  
-}
-
-@media (max-width: 480px) {
-    #footer h3 {
-        font-size: 1.6rem;
-    }
-
-    #footer-social i {
-        font-size: 55px;
-    }
-}
-#footer h3{
-    color:#ff6200;
 }
