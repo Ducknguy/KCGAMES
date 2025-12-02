@@ -4,12 +4,14 @@
     box-sizing: border-box;
 }
 
-:root {
-    --page-bg: #ffffff;
-}
+/* KHÔNG khai báo lại :root ở đây nữa
+   Vì đã có file theme/header.css định nghĩa:
+   --bg-color, --text-color, --card-bg, ... */
 
+/* Toàn trang lấy màu từ biến theme */
 body {
-    background-color: var(--page-bg);
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -42,16 +44,38 @@ img {
     object-fit: cover;
 }
 
+.video-wrapper {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    object-fit: cover;
+}
+
+.video-wrapper video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.intro-video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 #about_we {
     width: 100%;
     padding: 30px 20px;
+    background-color: var(--bg-color);
+    /* nền theo theme */
 }
 
 #about_we h2 {
     text-align: center;
     font-size: clamp(2em, 5vw, 2.5em);
     margin-bottom: 30px;
-    color: #333;
+    color: var(--text-color);
+    /* thay #333 */
     margin-top: 0;
 }
 
@@ -88,7 +112,8 @@ img {
 
 #outstanding_product {
     margin: 10px 0 10px 0;
-    background-color: #F6F6F6;
+    background-color: var(--card-bg);
+    /* thay #F6F6F6 */
     padding: 50px 20px;
     justify-content: center;
     width: 100%;
@@ -102,12 +127,14 @@ img {
     text-align: center;
     font-size: clamp(2em, 5vw, 2.5em);
     margin-bottom: 10px;
-    color: #333;
+    color: var(--text-color);
+    /* thay #333 */
 }
 
 #outstanding_product p {
     text-align: center;
-    color: #333;
+    color: var(--text-color);
+    /* thay #333 */
     margin-bottom: 10px;
 }
 
@@ -122,7 +149,8 @@ img {
 #col-main-product {
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--card-bg);
+    /* thay #fff */
     border-radius: 10px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
     max-width: 800px;
@@ -142,7 +170,7 @@ img {
 }
 
 #box_text li {
-    font-size:40px;
+    font-size: 40px;
     font-weight: 1000;
     padding: 10px 0 10px 0;
 }
@@ -173,7 +201,8 @@ img {
 }
 
 #archive {
-    background-color: #F6F6F6;
+    background-color: var(--card-bg);
+    /* thay #F6F6F6 */
     padding: 50px 20px;
 }
 
@@ -189,7 +218,8 @@ img {
     margin: 15px;
     height: 322px;
     width: 320px;
-    background-color: #fff;
+    background-color: var(--bg-color);
+    /* thay #fff */
     border-radius: 10px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
 }
@@ -204,16 +234,17 @@ img {
     height: 100px;
 }
 
-
 #section-hoatdong {
     padding: 50px 20px;
     width: 100%;
+    background-color: var(--bg-color);
 }
 
 #section-hoatdong h2 {
     text-align: center;
     font-size: clamp(2em, 5vw, 2.5em);
     margin-bottom: 40px;
+    color: var(--text-color);
 }
 
 #section-content {
@@ -227,7 +258,8 @@ img {
     margin: 10px;
     width: clamp(300px, 30vw, 367px);
     height: auto;
-    background-color: #fff;
+    background-color: var(--bg-color);
+    /* thay #fff */
     border-radius: 10px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -250,6 +282,7 @@ img {
     padding: 10px 0;
     margin: 0;
     text-align: left;
+    color: var(--text-color);
 }
 
 #text-hoatdong p {
@@ -373,7 +406,7 @@ img {
 .scroll-reveal {
     opacity: 0;
     transform: translateY(40px);
-    transition: all 0.7s cubic-bezier(.15,.75,.35,1);
+    transition: all 0.7s cubic-bezier(.15, .75, .35, 1);
 }
 
 .scroll-reveal.active {

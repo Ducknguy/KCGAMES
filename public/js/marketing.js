@@ -1,5 +1,5 @@
 // =============== LOAD HTML CHUNG ===============
-async function loadHTML(url, containerId, callback = () => {}) {
+async function loadHTML(url, containerId, callback = () => { }) {
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -35,7 +35,7 @@ function loadGTranslate() {
 
     const script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = "https://cdn.gtranslate.net/widgets/latest/float.js";
+    script.src = "https://cdn.gtranslate.net/widgets/latest/dropdown.js";
     document.body.appendChild(script);
 }
 

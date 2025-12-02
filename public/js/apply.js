@@ -35,7 +35,7 @@ function loadGTranslate() {
 
     const script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = "https://cdn.gtranslate.net/widgets/latest/float.js";
+    script.src = "https://cdn.gtranslate.net/widgets/latest/dropdown.js";
     document.body.appendChild(script);
 }
 

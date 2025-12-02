@@ -19,7 +19,8 @@
     background-color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
 
-    position: fixed;      /* luôn dính trên cùng */
+    position: fixed;
+    /* luôn dính trên cùng */
     top: 0;
     left: 0;
     z-index: 1000;
@@ -53,15 +54,28 @@
     display: flex;
     justify-content: flex-end;
 }
-#gt_float_wrapper {
-     position: fixed !important;
-    bottom: 20px !important;   /* cách đáy 20px */
-    right: 20px !important;    /* cách phải 20px */
-    top: auto !important;      /* bỏ top */
-    left: auto !important;
 
-    z-index: 9999 !important;
+/* Gtranslate wrapper styling */
+.gtranslate_wrapper {
+    display: inline-flex !important;
+    align-items: center;
+    margin-left: 15px;
+    position: relative !important;
 }
+
+/* Ensure gtranslate widget stays inline */
+.gtranslate_wrapper * {
+    position: relative !important;
+}
+
+/* Style the dropdown trigger */
+.gtranslate_wrapper a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
 
 #navbar {
     display: flex;
@@ -185,7 +199,8 @@
         justify-content: flex-start;
 
         position: fixed;
-        top: 70px; /* bằng chiều cao header mobile */
+        top: 70px;
+        /* bằng chiều cao header mobile */
         right: -100%;
 
         width: 80%;
