@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-   "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rimraf dist",  
-    "copy": "copyfiles *.html *.css *.js **/*.{png,jpg,svg} dist", 
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf dist",
+    "copy": "copyfiles *.html *.css *.js **/*.{png,jpg,svg} dist",
     "build": "yarn clean && yarn copy"
   },
   "repository": {
@@ -28,6 +28,7 @@
     "helmet": "^8.1.0",
     "joi": "^18.0.1",
     "multer": "^2.0.2",
+    "next": "^16.0.7",
     "node": "^25.1.0",
     "nodemailer": "^7.0.10",
     "resend": "^6.4.2",
