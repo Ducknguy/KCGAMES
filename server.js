@@ -234,10 +234,10 @@ const applicationSchema = Joi.object({
         'any.required': 'Email là bắt buộc.'
     }),
     phone: Joi.string().pattern(/^[0-9]{10,15}$/).optional(),
-    job_position: Joi.string().valid('Game Design (Freshers - Junior)',
-        'Unity Developer',
+    job_position: Joi.string().valid('Game Designer',
         'Backend Developer',
-        'Marketing Game',
+        'Unity Developer',
+        'Marketing',
         'Khác').required(),
     notes: Joi.string().max(500).optional()
 });

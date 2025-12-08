@@ -1,4 +1,57 @@
-// Load 1 file HTML vào containerId, rồi gọi callback (nếu có)
+// /public/js/gioithieu.js
+
+// ================== REVEAL ON SCROLL (IntersectionObserver) ==================
+function setupRevealObserver() {
+    const revealEls = document.querySelectorAll(".reveal, .reveal--zoom, .scroll-reveal");
+    if (!revealEls.length) return;
+
+    // Fallback nếu trình duyệt không có IntersectionObserver
+    if (!("IntersectionObserver" in window)) {
+        revealEls.forEach(el => {
+            el.classList.add("is-visible");
+            if (el.classList.contains("scroll-reveal")) {
+                el.classList.add("active");
+            }
+        });
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        (entries, obs) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+
+                const el = entry.target;
+
+                // Delay: lấy từ data-delay nếu có (vd data-delay="0.2s")
+                const delay = el.getAttribute("data-delay");
+                if (delay) {
+                    el.style.transitionDelay = delay;
+                }
+
+                // Hệ mới: .reveal / .reveal--zoom
+                if (el.classList.contains("reveal") || el.classList.contains("reveal--zoom")) {
+                    el.classList.add("is-visible");
+                }
+
+                // Hệ cũ: .scroll-reveal
+                if (el.classList.contains("scroll-reveal")) {
+                    el.classList.add("active");
+                }
+
+                // Chỉ cần animate 1 lần
+                obs.unobserve(el);
+            });
+        },
+        {
+            threshold: 0.2 // nhìn thấy 20% là bắt đầu animate
+        }
+    );
+
+    revealEls.forEach(el => observer.observe(el));
+}
+
+// ================== LOAD HTML CHUNG (header / footer) ==================
 async function loadHTML(url, containerId, callback = () => { }) {
     try {
         const response = await fetch(url);
@@ -10,7 +63,7 @@ async function loadHTML(url, containerId, callback = () => { }) {
         const container = document.getElementById(containerId);
 
         if (!container) {
-            console.warn('Không tìm thấy container:', containerId);
+            console.warn("Không tìm thấy container:", containerId);
             return;
         }
 
@@ -24,27 +77,7 @@ async function loadHTML(url, containerId, callback = () => { }) {
     }
 }
 
-// Hiệu ứng scroll-reveal cho các phần tử có class .scroll-reveal
-function setupScrollReveal() {
-    const elements = document.querySelectorAll(".scroll-reveal");
-    if (!elements.length) return;
-
-    const reveal = () => {
-        const trigger = window.innerHeight * 0.55;
-
-        elements.forEach(el => {
-            const rectTop = el.getBoundingClientRect().top;
-            if (rectTop < trigger) {
-                el.classList.add("active");
-            }
-        });
-    };
-
-    window.addEventListener("scroll", reveal);
-    reveal();
-}
-
-// GTranslate
+// ================== GTRANSLATE ==================
 function loadGTranslate() {
     window.gtranslateSettings = {
         default_language: "vi",
@@ -59,28 +92,34 @@ function loadGTranslate() {
     document.body.appendChild(script);
 }
 
-// Callback sau khi header.html được load xong
+// ================== SAU KHI HEADER LOAD XONG ==================
 function afterHeaderLoad() {
-    // Dùng initHeader() từ header.js để:
+    // initHeader() ở header.js:
     // - set padding-top cho body
-    // - gắn blur khi scroll
-    // - setup mobile menu + active nav
+    // - blur khi scroll
+    // - mobile menu + active nav
     if (typeof initHeader === "function") {
         initHeader();
     } else if (typeof setActiveNav === "function") {
-        // fallback nếu header.js cũ
+        // fallback nếu header.js bản cũ
         setActiveNav();
     }
 
     loadGTranslate();
+
+    // nếu trong header có .reveal / .scroll-reveal thì bắt lại
+    setupRevealObserver();
 }
 
-// Khi DOM sẵn sàng
+// ================== ENTRY CHÍNH ==================
 document.addEventListener("DOMContentLoaded", () => {
-    // Load header/footer riêng của trang giới thiệu
+    // 1) Load header/footer
     loadHTML("/public/html/client/header.html", "header_gioi_thieu", afterHeaderLoad);
-    loadHTML("/public/html/client/footer.html", "footer_gioi_thieu");
+    loadHTML("/public/html/client/footer.html", "footer_gioi_thieu", () => {
+        // nếu footer sau này có dùng reveal thì cũng bắt luôn
+        setupRevealObserver();
+    });
 
-    // Scroll reveal cho nội dung trang
-    setupScrollReveal();
+    // 2) Reveal cho phần nội dung đang có sẵn trong trang
+    setupRevealObserver();
 });

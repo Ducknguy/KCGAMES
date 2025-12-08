@@ -1,20 +1,70 @@
-
-
- /* GLOBAL */
+/* GLOBAL */
 body {
     margin: 0;
     padding: 0;
-    background-color: #F8F9FA;
-    font-family: "Poppins", sans-serif;
+    background-color: #1a1a1a;
+    font-family: "Alumni+Sans", system-ui, sans-serif;
 }
 
-/* Banner */
-#main_page {
-   width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
+/* HERO – giống style bên giới thiệu, mờ dần ở chân */
+.hero-hoatdong {
+    position: relative;
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 
+    /* Ảnh nền */
+    background-image:
+        linear-gradient(to bottom,
+            rgba(26, 26, 26, 0.0) 0%,
+            /* trên gần như trong suốt */
+            rgba(26, 26, 26, 0.35) 55%,
+            /* giữa bắt đầu tối nhẹ */
+            #1a1a1a 100%
+            /* chân ảnh trùng màu body */
+        ),
+        url("/public/Image/Thanhvien/BackgrounDoTay.jpg");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+/* Nếu muốn text trong hero */
+.hero-hoatdong-content {
+    padding: 3rem 1.5rem 4.5rem;
+    text-align: center;
+    color: #ffffff;
+    max-width: 960px;
+}
+
+.hero-hoatdong-content h1 {
+    margin: 0 0 0.75rem;
+    font-size: 2.6rem;
+    letter-spacing: 0.12em;
+}
+
+.hero-hoatdong-content p {
+    margin: 0;
+    font-size: 1rem;
+    color: #d0d0d0;
+    line-height: 1.7;
+}
+
+/* Responsive nhẹ cho hero */
+@media (max-width: 768px) {
+    .hero-hoatdong {
+        min-height: 50vh;
+    }
+
+    .hero-hoatdong-content {
+        padding: 2.5rem 1.25rem 3.5rem;
+    }
+
+    .hero-hoatdong-content h1 {
+        font-size: 2.1rem;
+    }
 }
 
 /* Wrapper */
@@ -34,13 +84,13 @@ body {
 #text-header h1 {
     font-size: 3rem;
     margin-bottom: 15px;
-    color: #2C3E50;
+    color: #ffffff;
     font-weight: 700;
 }
 
 #text-header p {
     font-size: 1.05rem;
-    color: #7F8C8D;
+    color: #bbbbbb;
     line-height: 1.7;
 }
 
@@ -56,7 +106,7 @@ body {
     display: grid;
     grid-template-columns: minmax(260px, 340px) 1fr;
     gap: 24px;
-    background-color: #FFFFFF;
+    background-color: #262626;
     border-radius: 12px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
     overflow: hidden;
@@ -94,32 +144,36 @@ body {
 
 .activity-meta {
     font-size: 0.85rem;
-    color: #95A5A6;
+    color: #ffffff;
     margin-bottom: 6px;
 }
 
 .activity-title {
     font-size: 1.4rem;
     margin: 0 0 10px;
-    color: #2C3E50;
+    color: #ffffff;
     font-weight: 600;
 }
 
 .activity-desc {
     margin: 0 0 10px;
     font-size: 0.98rem;
-    color: #555;
+    color: #ffffff;
     line-height: 1.6;
 }
 
 .activity-readmore {
     margin-top: auto;
     font-size: 0.95rem;
-    color: #EB731A;
+    color: #41579e;
     display: inline-flex;
     align-items: center;
     gap: 4px;
     font-weight: 500;
+}
+
+.activity-readmore:hover {
+    color: #5778e6;
 }
 
 .activity-readmore i {
@@ -135,11 +189,11 @@ body {
     .activity-item {
         grid-template-columns: minmax(240px, 320px) 1fr;
     }
-   
+
 }
 
 @media (max-width: 768px) {
-    
+
 
     #wrapper {
         padding: 30px 15px 60px;
@@ -166,7 +220,7 @@ body {
 .scroll-reveal {
     opacity: 0;
     transform: translateY(40px);
-    transition: all 0.7s cubic-bezier(.15,.75,.35,1);
+    transition: all 0.7s cubic-bezier(.15, .75, .35, 1);
 }
 
 .scroll-reveal.active {

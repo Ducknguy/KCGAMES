@@ -1,8 +1,9 @@
 body {
     margin: 0;
     padding: 0;
-    background: #F8F9FA;
-    font-family: "Poppins", sans-serif;
+    background: #1a1a1a;
+    font-family: "Alumni+Sans", system-ui, sans-serif;
+
 }
 
 #detail-wrapper {
@@ -18,21 +19,21 @@ body {
 
 .detail-date {
     font-size: 0.9rem;
-    color: #95A5A6;
+    color: #ffffff;
     margin-bottom: 6px;
 }
 
 #detail-header h1 {
     font-size: 2.3rem;
     margin: 0;
-    color: #2C3E50;
+    color: #ffffff;
 }
 
 .detail-gallery img,
-#detail-gallery img{
-    width: 220px;     
-    height: 140px;     
-    object-fit: contain; 
+#detail-gallery img {
+    width: 220px;
+    height: 140px;
+    object-fit: contain;
     border-radius: 8px;
     display: block;
 }
@@ -42,7 +43,7 @@ body {
     width: 100%;
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 6px 22px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.12);
     margin-bottom: 25px;
 }
 
@@ -57,8 +58,9 @@ body {
 .detail-content {
     font-size: 1.02rem;
     line-height: 1.8;
-    color: #444;
-    white-space: pre-line; /* để xuống dòng từ JSON */
+    color: #ffffff;
+    white-space: pre-line;
+    /* để xuống dòng từ JSON */
 }
 
 /* Gallery */
@@ -69,7 +71,7 @@ body {
 #detail-gallery-section h2 {
     font-size: 1.6rem;
     margin-bottom: 18px;
-    color: #2C3E50;
+    color: #ffffff;
 }
 
 .detail-gallery {
@@ -89,15 +91,17 @@ body {
 
 .detail-gallery img:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
 }
 
 /* Lightbox */
 .lightbox {
     position: fixed;
-    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    inset: 0;
+    /* top:0; right:0; bottom:0; left:0 */
     background: rgba(0, 0, 0, 0.8);
-    display: none;       /* JS sẽ đổi thành flex khi mở */
+    display: none;
+    /* JS sẽ đổi thành flex khi mở */
     justify-content: center;
     align-items: center;
     z-index: 9999;
@@ -110,9 +114,12 @@ body {
 }
 
 .lightbox img {
-   max-width: 90vw;     /* không rộng quá 90% màn hình */
-    max-height: 90vh;    /* không cao quá 90% màn hình */
-    object-fit: contain; /* luôn fit vào khung, không bị méo */
+    max-width: 90vw;
+    /* không rộng quá 90% màn hình */
+    max-height: 90vh;
+    /* không cao quá 90% màn hình */
+    object-fit: contain;
+    /* luôn fit vào khung, không bị méo */
     border-radius: 10px;
 }
 
@@ -129,7 +136,7 @@ body {
 .scroll-reveal {
     opacity: 0;
     transform: translateY(40px);
-    transition: all .7s cubic-bezier(.15,.75,.35,1);
+    transition: all .7s cubic-bezier(.15, .75, .35, 1);
 }
 
 .scroll-reveal.active {
@@ -151,6 +158,7 @@ body {
         height: 150px;
     }
 }
+
 /* Navigation Buttons */
 #detail-navigation {
     margin-top: 40px;
@@ -160,13 +168,13 @@ body {
 }
 
 .nav-btn {
-    background-color: #EB731A;
-    border: none;
+    background-color: transparent;
+    border: 1px solid #256af4;
     padding: 12px 22px;
     font-size: 1rem;
     color: #fff;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 20px;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -175,9 +183,10 @@ body {
 }
 
 .nav-btn:hover {
-    background-color: #d16312;
-    transform: translateY(-2px);
+    background-color: rgba(37, 106, 244, 0.2);
+    transform: translateY(-3px);
 }
+
 
 .nav-btn:disabled {
     background-color: #ccc;

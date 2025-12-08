@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -16,44 +16,65 @@
 
 <body>
     <div id="header_apply_form"></div>
-    <div id="application_modal">
-        <div id="modal-content">
-            <h2>Ứng tuyển ngay</h2>
+    <main class="page-main">
+        <section class="apply-card">
+            <h1 class="apply-title">Ứng tuyển ngay</h1>
             <form id="form_apply">
-                <div id="ten-email">
-                    <input type="text" name="full_name" placeholder="Họ và tên" required>
-                    <input type="email" name="email" placeholder="Email (dùng để nhận mail xác nhận)" required>
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="fullName" class="form-label">Họ và tên</label>
+                        <input type="text" name="full_name" class="form-control" placeholder="Họ và tên" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Dùng để nhận mail xác nhận"
+                            required />
+                    </div>
                 </div>
-                <input id="sdt" type="tel" name="phone" placeholder="Số điện thoại" required>
-                <div id="vitriungtuyen">
-                    <label style="width: 25%;font-size: 16px;text-align: left;" for="jobPositionSelect">Vị trí ứng
-                        tuyển:</label>
-                    <select id="jobPositionSelect" name="job_position" required>
-                        <option value="" disabled selected>-- Chọn vị trí --</option>
-                        <option value="Game Design (Freshers - Junior)">Game Designe (Fresher - Junior)</option>
-                        <option value="Unity Developer">Unity Developer (Junior - Senior)</option>
-                        <option value="Backend Developer">Backend (Junior - Senior)</option>
-                        <option value="Marketing Game">Marketing Game</option>
-                        <option value="Khác">Vị trí khác (Vui lòng ghi chú)</option>
+
+                <div class="form-field">
+                    <label for="phone" class="form-label">Số điện thoại</label>
+                    <input type="tel" name="phone" id="sdt" class="form-control" placeholder="Nhập số điện thoại"
+                        required />
+                </div>
+
+                <div class="form-field">
+                    <label for="job_position" class="form-label">Vị trí ứng tuyển</label>
+                    <select name="job_position" class="form-control select-control">
+                        <option>-- Chọn vị trí --</option>
+                        <option>Game Designer</option>
+                        <option>Backend Developer</option>
+                        <option>Unity Developer</option>
+                        <option>Marketing</option>
                     </select>
                 </div>
-                <div id="CV">
-                    <label style="width: 60%;font-size: 16px;margin-bottom: 10px;text-align: left;" for="resume">Đính
-                        kèm
-                        CV (Tối đa 5MB,
-                        *.pdf,
-                        *.docx):</label>
-                    <input style="font-size: 16px;" type="file" name="resume" id="resume" accept=".pdf,.doc,.docx"
-                        required>
-                </div>
-                <textarea id="note" name="notes"
-                    placeholder="Ghi chú, lời nhắn cho nhà tuyển dụng (tùy chọn)"></textarea>
 
-                <button id="btn_send" type="submit">GỬI ĐƠN ỨNG TUYỂN</button>
+                <div class="form-field">
+                    <div id="CV">
+                        <label style="width: 60%;font-size: 16px;margin-bottom: 10px;text-align: left;"
+                            for="resume">Đính
+                            kèm
+                            CV (Tối đa 5MB,
+                            *.pdf,
+                            *.docx):</label>
+                        <input style="font-size: 16px;" type="file" name="resume" id="resume" accept=".pdf,.doc,.docx"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="notes" class="form-label">Ghi chú, lời nhắn cho nhà tuyển dụng</label>
+                    <textarea id="notes" rows="4" class="form-control textarea-control"
+                        placeholder="(tùy chọn)"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="btn_send" class="btn btn-submit">Gửi đơn ứng tuyển</button>
+                </div>
             </form>
-        </div>
-    </div>
-    <script src="/public/js/apply.js"></script>
+        </section>
+    </main>
     <div id="footer_apply_form"></div>
 
 </body>

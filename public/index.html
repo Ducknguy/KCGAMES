@@ -11,98 +11,240 @@
     <link rel="stylesheet" href="/public/css/footer.css">
     <script src="/public/js/header.js"></script>
     <script src="/public/js/index.js"></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alumni+Sans&amp;family=Oswald:wght@200;300;500&amp;family=Yanone+Kaffeesatz:wght@200;400&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <div id="header_home"></div>
-    <div class="wrapper">
-        <div class="video-wrapper">
-            <video src="/public/Image/Comp 1.webm" autoplay muted loop playsinline class="intro-video">
-
+    <main id="wrapper">
+        <!-- HERO VIDEO -->
+        <div class="hero-media reveal-on-scroll reveal-from-bottom">
+            <video class="intro-video" autoplay muted loop playsinline aria-label="KCGAMES intro video">
+                <source src="/public/Image/Comp 1.webm" type="video/mp4" />
+                Trình duyệt của bạn không hỗ trợ video HTML5.
             </video>
         </div>
 
-        <section id="about_we" class="scroll-reveal">
-            <div id="main_about">
-                <div id="text_about">
-                    <h2>KCGAMES</h2>
-                    <p> <strong>KCGAMES</strong> là một studio game mobile trẻ tuổi nhưng đầy tham vọng, với đội ngũ
-                        nhân viên tài năng và tâm huyết. Studio đang từng bước khẳng định vị thế của mình trên thị
-                        trường
-                        game mobile Việt Nam và vươn tầm ra thị trường quốc tế. Hãy cùng theo dõi và ủng hộ
-                        <strong>KCGAMES</strong> trên
-                        con đường chinh phục đam mê và tạo ra những trò chơi di động chất lượng cao, mang đến cho người
-                        chơi
-                        những trải nghiệm giải trí tuyệt vời nhất!
+        <!-- ABOUT -->
+        <section class="section section-about fade-in-on-scroll" id="about">
+            <div class="about-container">
+                <div class="about-child"></div>
+
+                <div class="about-layout">
+                    <div class="about-inner"></div>
+
+                    <div class="about-left reveal-on-scroll reveal-from-left">
+                        <div class="section-header">
+                            <h2 class="section-title ">
+                                KCGAMES
+                            </h2>
+                            <!-- <p class="section-text">
+                                Chúng tôi tập trung vào việc tạo ra những trò chơi di động chất lượng
+                                cao, hấp dẫn
+                                và gần gũi với người chơi.
+                            </p> -->
+                        </div>
+
+                        <div class="about-text-long">
+                            <p class="about-paragraph">
+                                <strong>KCGAMES</strong> là một studio game mobile trẻ tuổi nhưng đầy
+                                tham vọng,
+                                với đội ngũ nhân viên tài năng và tâm huyết. Studio đang từng bước khẳng
+                                định
+                                vị thế của mình trên thị trường game mobile Việt Nam và vươn tầm ra thị
+                                trường
+                                quốc tế.
+                                Hãy cùng theo dõi và ủng hộ <strong>KCGAMES</strong> trên con
+                                đường
+                                chinh phục đam mê và tạo ra những trò chơi di động chất lượng cao, mang
+                                đến
+                                cho người chơi những trải nghiệm giải trí tuyệt vời nhất!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Cột phải: card hình lòi ra và bo tròn -->
+                    <div class="about-right reveal-on-scroll reveal-from-right reveal-delay-2">
+                        <div class="about-photo-card">
+                            <img src="/public/Image/Hoatdong/ChupAnhCty/backgrond.jpg" alt="Văn phòng KCGAMES"
+                                class="about-photo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT -->
+        <section class="section product fade-in-on-scroll" id="product">
+            <div class="container">
+                <h2 class="section-title reveal-on-scroll reveal-from-bottom">Sản phẩm nổi bật</h2>
+
+                <div class="product-card reveal-on-scroll reveal-zoom-up reveal-delay-2">
+                    <div class="product-media">
+                        <div class="product-main">
+                            <img id="product-main-img" src="/public/Image/LogoGame.jpg"
+                                alt="Trâu Phượt - screenshot chính">
+                        </div>
+
+                        <div class="product-thumbs">
+                            <!-- THUMB 1 -->
+                            <button class="product-thumb is-active" type="button"
+                                data-image="/public/Image/LogoGame.jpg">
+                                <img src="/public/Image/LogoGame.jpg" alt="Trâu Phượt 1">
+                            </button>
+
+                            <!-- THUMB 2 -->
+                            <button class="product-thumb" type="button" data-image="/public/Image/mota1.png">
+                                <img src="/public/Image/mota1.png" alt="Trâu Phượt 2">
+                            </button>
+
+                            <!-- THUMB 3 -->
+                            <button class="product-thumb" type="button" data-image="/public/Image/mota2.png">
+                                <img src="/public/Image/mota2.png" alt="Trâu Phượt 3">
+                            </button>
+
+                            <!-- THUMB 4 (nếu cần) -->
+                            <button class="product-thumb" type="button" data-image="/public/Image/mota4.png">
+                                <img src="/public/Image/mota4.png" alt="Trâu Phượt 4">
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- BÊN PHẢI: TEXT -->
+                    <div class="product-content">
+                        <h3 class="product-title">Trâu Phượt</h3>
+                        <p class="product-description">
+                            Hóa thân thành chú trâu dũng cảm, người bạn đồng hành quen thuộc nơi làng quê.
+                            Người chơi sẽ dẫn dắt trâu băng qua những cánh đồng, con đường làng và bãi bồi,
+                            vượt qua chướng ngại vật như hố bùn lầy, tảng đá cản đường hay ổ gà bất ngờ.
+                            Mỗi hành trình mở ra một khung cảnh nông thôn mộc mạc, đầy thử thách và khám phá thú vị.
+                        </p>
+
+                        <div class="store-buttons">
+                            <a href="https://play.google.com/store/apps/developer?id=KCGAMES+Company+Limited&hl=vi"
+                                class="store-btn" target="_blank">
+                                <i class='bx bxl-play-store'></i>
+                                <span>Google Play</span>
+                            </a>
+                            <a href="https://apps.apple.com" class="store-btn" target="_blank">
+                                <i class='bx bxl-apple'></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section features fade-in-on-scroll">
+            <div class="container">
+                <div class="feature-child"></div>
+                <div class="feature-inner"></div>
+                <div class="section-header text-center">
+                    <h2 class="section-title reveal-on-scroll reveal-from-top">Điều làm nên KCGAMES</h2>
+                    <p
+                        class="section-paragraph section-paragraph--center reveal-on-scroll reveal-from-bottom reveal-delay-2">
+                        Những điểm mạnh giúp KCGAMES tạo ra các sản phẩm game khác biệt: Sáng tạo, nhiệt huyết và
+                        luôn hướng đến trải nghiệm người chơi.
                     </p>
                 </div>
-                <img src="/public/Image/Hoatdong/ChupAnhCty/backgrond.jpg" alt="">
+
+                <div class="features-grid">
+                    <article class="feature-card reveal-on-scroll reveal-from-left reveal-delay-1">
+                        <div class="feature-icon">
+                            <span class="material-symbols-outlined">lightbulb</span>
+                        </div>
+                        <h3 class="feature-title">Ý tưởng sáng tạo</h3>
+                        <p class="feature-description">
+                            Xây dựng những concept game gần gũi, vui nhộn nhưng vẫn mang màu sắc riêng của KCGAMES.
+                        </p>
+                    </article>
+
+                    <article class="feature-card reveal-on-scroll reveal-zoom-in reveal-delay-2">
+                        <div class="feature-icon">
+                            <span class="material-symbols-outlined">groups</span>
+                        </div>
+                        <h3 class="feature-title">Đội ngũ nhiệt huyết</h3>
+                        <p class="feature-description">
+                            Tập hợp những thành viên trẻ trung, đam mê game và luôn sẵn sàng thử thách bản thân.
+                        </p>
+                    </article>
+
+                    <article class="feature-card reveal-on-scroll reveal-from-right reveal-delay-3">
+                        <div class="feature-icon">
+                            <span class="material-symbols-outlined">verified</span>
+                        </div>
+                        <h3 class="feature-title">Hướng đến chất lượng</h3>
+                        <p class="feature-description">
+                            Không chỉ phát hành game, chúng tôi muốn tạo ra trải nghiệm đáng nhớ cho người chơi.
+                        </p>
+                    </article>
+                </div>
             </div>
         </section>
 
-        <section id="outstanding_product" class="scroll-reveal">
-            <h2> <strong>SẢN PHẨM</strong> NỔI BẬT</h2>
-            <p>Tạo ra những trò chơi di động chất lượng cao, hấp dẫn và thu hút người chơi</p>
-
-            <div id="main-product">
-                <div id="col-main-product">
-                    <img src="/public/Image/LogoGame.jpg" alt="">
-                    <div id="box_text">
-                        <li><a href=""></a>Trâu Phượt</li>
-                        <p>Hóa thân thành chú trâu dũng cảm, người bạn đồng hành quen thuộc nơi làng quê. Người chơi sẽ
-                            dẫn dắt trâu băng qua những cánh đồng, con đường làng và bãi bồi, vượt qua chướng ngại vật
-                            như hố bùn lầy, tảng đá cản đường hay ổ gà bất ngờ. Mỗi hành trình mở ra một khung cảnh nông
-                            thôn mộc mạc, đầy thử thách và khám phá thú vị.</p>
-                        <a href="https://play.google.com/store/apps/details?id=com.kcgames.trauphuot&hl=vi"><img
-                                id="ggplay" src="/public/Image/androi-e1721277717590.png" alt=""></a>
-
+        <section class="blog-section fade-in-on-scroll" id="blog">
+            <h2 class="section-heading reveal-on-scroll reveal-from-left">Hoạt động tại KCGAMES</h2>
+            <div class="blog-grid">
+                <!-- Activity 1 -->
+                <article class="blog-article reveal-on-scroll reveal-from-left reveal-delay-1">
+                    <img class="blog-image" src="/public/Image/Hoatdong/MenDay/Tapthe.png"
+                        alt="International Men's Day tại KCGAMES" />
+                    <div class="blog-content fade-in-on-scroll">
+                        <p class="blog-date">19-11-2025</p>
+                        <h3 class="blog-title">International Men's Day</h3>
+                        <p class="blog-excerpt">
+                            🐥 CHÚC MỪNG NGÀY ĐÀN ÔNG QUỐC TẾ 19/11! 💪
+                        </p>
                     </div>
-                </div>
-                <div id="col-demo">
-                    <img src="/public/Image/backgroundtrau1.png " alt="Sản phẩm demo 1">
-                    <img src="/public/Image/mota2.png" alt="Sản phẩm demo 2">
-                    <img src="/public/Image/mota3.png" alt="Sản phẩm demo 2">
-                </div>
+                </article>
+
+                <!-- Activity 2 -->
+                <article class="blog-article reveal-on-scroll reveal-zoom-up reveal-delay-2">
+                    <img class="blog-image" src="/public/Image/Hoatdong/SNSep/TapThe.png"
+                        alt="Sinh nhật thuyền trưởng KCGAMES" />
+                    <div class="blog-content fade-in-on-scroll">
+                        <p class="blog-date">20-11-2025</p>
+                        <h3 class="blog-title">Sinh nhật Thuyền trưởng</h3>
+                        <p class="blog-excerpt">
+                            Chúc mừng sinh nhật "Thuyền trưởng" của KCGames Studio!
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Activity 3 -->
+                <article class="blog-article reveal-on-scroll reveal-from-right reveal-delay-3">
+                    <img class="blog-image" src="/public/Image/Hoatdong/ChupAnhCty/backgrond.jpg"
+                        alt="Khoảnh khắc làm việc tại KCGAMES" />
+                    <div class="blog-content fade-in-on-scroll">
+                        <p class="blog-date">12-11-2025</p>
+                        <h3 class="blog-title">Khoảnh khắc làm việc tại KCGAMES</h3>
+                        <p class="blog-excerpt">
+                            Những khoảnh khắc thường ngày tại phòng làm việc của KCGAMES.
+                        </p>
+                    </div>
+                </article>
             </div>
-
-        </section>
-
-        <section id="section-hoatdong" class="scroll-reveal">
-            <h2>HOẠT ĐỘNG</h2>
-            <div id="section-content">
-                <div id="col-inner-hoatdong">
-                    <img src="/public/Image/Hoatdong/MenDay/Tapthe.png" alt="Hình ảnh hoạt động">
-                    <div id="text-hoatdong">
-                        <h2>International Men's Day</h2>
-                        <p>19-11-2025</p>
-                        <br>
-                        <p>🐥 CHÚC MỪNG NGÀY ĐÀN ÔNG QUỐC TẾ 19/11! 💪</p>
-                    </div>
-                </div>
-                <div id="col-inner-hoatdong">
-                    <img src="/public/Image/Hoatdong/SNSep/AnhALong.png" alt="Hình ảnh hoạt động">
-                    <div id="text-hoatdong">
-                        <h2>Sinh nhật Thuyền trưởng</h2>
-                        <p>20-11-2025</p>
-                        <br>
-                        <p>Chúc mừng sinh nhật 'Thuyền trưởng' của KCGames Studio!</p>
-                    </div>
-                </div>
-                <div id="col-inner-hoatdong">
-                    <img src="/public/Image/Hoatdong/ChupAnhCty/backgrond.jpg" alt="Hình ảnh hoạt động">
-                    <div id="text-hoatdong">
-                        <h2>Khoảnh khắc làm việc tại KCGAMES</h2>
-                        <p>12-11-2025</p>
-                        <br>
-                        <p>Những khoảnh khắc thường ngày tại phòng làm việc của KCGAMES</p>
-                    </div>
-                </div>
-
+            <div class="blog-cta reveal-on-scroll reveal-from-bottom reveal-delay-2">
+                <button class="btn-outline">
+                    <span>Xem thêm hoạt động</span>
+                </button>
             </div>
         </section>
-
-    </div>
+    </main>
     <div id="footer_home"></div>
 
 </body>

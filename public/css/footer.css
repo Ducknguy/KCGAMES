@@ -1,215 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f0f0f0;
-}
+/* ===========================
+   FOOTER
+=========================== */
 
 footer {
-    position: relative;
+    margin-top: 5rem;
+    border-top: 1px solid #222f49;
+    padding: 2.5rem 1rem;
     width: 100%;
-    background: linear-gradient(to right, #0a1628, #341a1a);
-    color: #fff;
-    padding: 70px 0 0;
 }
 
 .footer-content {
+    max-width: 1120px;
+    margin: 0 auto;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    padding: 0 8% 50px;
-    flex-wrap: wrap;
-}
-
-.footer-col {
-    flex-basis: 24%;
-    min-width: 250px;
-}
-
-.footer-col h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.footer-col h2::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    background-color: #eb731a;
-    height: 3px;
-    width: 50px;
+    align-items: center;
+    gap: 2rem;
 }
 
 .footer-col h3 {
-    font-size: 28px;
-    margin-bottom: 30px;
-    position: relative;
-    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
 }
 
-.footer-col h3::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    background-color: #eb731a;
-    height: 3px;
-    width: 50px;
-}
-.bxs-map{
-    padding-right: 2px;
-    color: #eb731a;
-}
-.bxl-gmail{
-    padding-right: 5px;
-    color: #eb731a;
-}
-.bxs-phone-call{
-    padding-right: 5px;
-    color: #eb731a;
-    font-size: 24px;
-}
-
-.footer-col p {
-    font-size: 20px;
-    line-height: 24px;
-    margin-bottom: 10px;
-    color: #ccc;
-    font-weight: 300;
-}
-
-.footer-col .email {
-    width: fit-content;
-    margin: 20px 0;
-}
-
+.footer-col p,
 .footer-col h4 {
-    font-size: 16px;
-    margin-top: 10px;
-    font-weight: 500;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
 }
 
-
-.footer-col .footer-logo {
-    width: 200px;
-    height: 200px;
-    margin-bottom: 10px;
+.footer-logo {
+    max-height: 100px;
+    width: auto;
+    display: block;
 }
 
-/* Social Icons Styles */
+/* social icons */
+
 .social-icons {
     display: flex;
-    gap: 15px;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .social-icons a {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #fff;
-    color: #0a1628;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 18px;
-    transition: all 0.3s ease;
-}
-.col-social{
-    margin-left: 50px;
-}
-.social-icons a:hover {
-    background-color: #eb731a;
-    color: #fff;
-    transform: translateY(-5px);
+    color: #9ca3af;
+    font-size: 1.5rem;
+    transition: color 0.2s;
 }
 
-/* Download Section Styles */
-.download-text {
-    margin-bottom: 25px;
-    line-height: 1.6;
+.social-icons a:hover {
+    color: #256af4;
 }
+
+/* store buttons – dùng chung cho footer (và product nếu cần) */
 
 .store-buttons {
     display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .store-btn {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 25px;
-    background-color: #fff;
-    color: #0078d4;
-    border-radius: 30px;
+    gap: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid #314368;
+    color: #e5e7eb;
     text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.store-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    background-color: #eb731a;
-    
-}
-.store-btn:hover i{
-    color: #fff;
-}
-.store-btn:hover span{
-    color: #fff;
+    font-size: 0.9rem;
+    transition:
+        background-color 0.2s,
+        border-color 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
 }
 
 .store-btn i {
-    font-size: 24px;
+    font-size: 1.2rem;
 }
 
-.store-btn:nth-child(1) {
-    color: #0078d4;
+/* hover chung */
+.store-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: #256af4;
 }
 
-.store-btn:nth-child(2) {
-    color: #000;
+.store-btn:hover i,
+.store-btn:hover span {
+    color: #fff;
 }
 
-footer hr {
-    width: 90%;
-    margin: 0 auto;
-    border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+/* nút đầu tiên (Google Play) có màu chữ xanh */
+.store-btn:first-child {
+    color: #256af4;
 }
 
-.copyright {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 14px;
-    color: #ccc;
-}
+/* ===========================
+   RESPONSIVE FOOTER
+=========================== */
 
-/* Responsive Design */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .footer-content {
-        flex-direction: column;
-        padding: 0 5% 30px;
-    }
-    .footer-col .footer-logo{
-        width: 150px;
-        height: 150px;
-    }
-
-    .footer-col {
-        flex-basis: 100%;
-        margin-bottom: 30px;
+        flex-direction: row;
+        align-items: flex-start;
     }
 }

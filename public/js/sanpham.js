@@ -41,10 +41,7 @@ function loadGTranslate() {
 
 // =============== HEADER CALLBACK ===============
 function afterHeaderLoad() {
-    // Dùng initHeader() từ header.js:
-    // - fixed header + blur
-    // - auto padding body
-    // - mobile menu + active nav
+    // initHeader() từ header.js:
     if (typeof initHeader === "function") {
         initHeader();
     } else if (typeof setActiveNav === "function") {
@@ -55,9 +52,53 @@ function afterHeaderLoad() {
     loadGTranslate();
 }
 
+// =============== REVEAL ANIMATION ===============
+function setupRevealObserver() {
+    const revealEls = document.querySelectorAll(".reveal, .reveal--zoom");
+    if (!revealEls.length) return;
+
+    // Fallback nếu browser không hỗ trợ IntersectionObserver
+    if (!("IntersectionObserver" in window)) {
+        revealEls.forEach(el => el.classList.add("is-visible"));
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        (entries, obs) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+
+                const el = entry.target;
+
+                // Delay: lấy từ data-delay nếu có (vd: data-delay="0.2s")
+                const delay = el.getAttribute("data-delay");
+                if (delay) {
+                    el.style.transitionDelay = delay;
+                }
+
+                // Thêm class hiển thị
+                if (el.classList.contains("reveal") || el.classList.contains("reveal--zoom")) {
+                    el.classList.add("is-visible");
+                }
+
+                // chỉ chạy 1 lần
+                obs.unobserve(el);
+            });
+        },
+        {
+            threshold: 0.2 // thấy 20% là animate
+        }
+    );
+
+    revealEls.forEach(el => observer.observe(el));
+}
+
 // =============== ENTRY POINT ===============
 document.addEventListener("DOMContentLoaded", () => {
     // Header & footer cho trang Sản phẩm
     loadHTML("/public/html/client/header.html", "header_sanpham", afterHeaderLoad);
     loadHTML("/public/html/client/footer.html", "footer_sanpham");
+
+    // Reveal cho hero + section + card
+    setupRevealObserver();
 });

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -11,51 +11,106 @@
     <link rel="stylesheet" href="/public/css/footer.css">
     <script src="/public/js/header.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
 
 </head>
 
 <body>
     <div id="header_lienhe"></div>
 
-    <img id="main_page" src="/public/Image/kcgames-logo-gif.gif" alt="">
-    <section id="section-lienhe">
-        <div id="section-form">
-            <div style="padding-bottom: 30px;" id="lienlac">
-                <h2>LIÊN LẠC</h2>
-            </div>
-            <form id="section-content">
-                <div id="hoten-email">
-                    <input id="full_name" type="text" name="full_name" placeholder="Họ và tên" required>
+    <div class="page">
+        <div class="page__inner">
 
-                    <input id="email" type="email" name="email" placeholder="Email" required>
-                </div>
-                <textarea name="notes" id="notes" placeholder="Nội dung liên hệ" required></textarea>
-                <br>
 
-                <input type="hidden" name="phone" value="[Không có SDT]">
-                <input type="hidden" name="job_position" value="[Liên hệ website]">
-                <input type="hidden" name="resume" value="">
+            <main class="contact">
+                <section class="contact__intro">
+                    <div class="contact__intro-text">
+                        <p class="contact__title">Liên Hệ Với Chúng Tôi</p>
+                        <p class="contact__subtitle">
+                            Chúng tôi rất mong nhận được phản hồi từ bạn. Nếu có bất kỳ câu hỏi, góp ý hay chỉ muốn chào
+                            hỏi, đừng ngần ngại liên hệ.
+                        </p>
+                    </div>
+                </section>
 
-                <button id="btn_send" type="submit">Gửi ngay</button>
-            </form>
+                <section class="contact__grid">
+                    <!-- Thông tin liên hệ -->
+                    <div class="contact-info">
+                        <h2 class="contact-info__title">Thông Tin Liên Hệ</h2>
+
+                        <div class="contact-card">
+                            <div class="contact-card__icon">
+                                <span class="material-symbols-outlined">location_on</span>
+                            </div>
+                            <div class="contact-card__content">
+                                <p class="contact-card__label">Địa chỉ</p>
+                                <p class="contact-card__value">Tầng 7, 227 Phạm Văn Đồng, Bắc Từ Liêm, Hà Nội</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-card__icon">
+                                <span class="material-symbols-outlined">mail</span>
+                            </div>
+                            <div class="contact-card__content">
+                                <p class="contact-card__label">Email</p>
+                                <p class="contact-card__value">hr@kcgames.vn</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-card__icon">
+                                <span class="material-symbols-outlined">call</span>
+                            </div>
+                            <div class="contact-card__content">
+                                <p class="contact-card__label">Điện thoại</p>
+                                <p class="contact-card__value">(+84) 035 503 9999</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form liên hệ -->
+                    <div class="contact-form">
+                        <h2 class="contact-form__title">Gửi Tin Nhắn Cho Chúng Tôi</h2>
+                        <form class="form" id="section-content">
+                            <div class="form__field">
+                                <label for="full_name">Họ và tên</label>
+                                <input id="full_name" name="full_name" type="text" placeholder="Tên của bạn" />
+                            </div>
+
+                            <div class="form__field">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" type="email" placeholder="email@example.com" />
+                            </div>
+
+                            <div class="form__field">
+                                <label for="notes">Nội dung tin nhắn</label>
+                                <textarea id="notes" name="notes" rows="4"
+                                    placeholder="Nội dung tin nhắn của bạn..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn--primary btn--full" id="btn_send">
+                                <span>Gửi Tin Nhắn</span>
+                            </button>
+                        </form>
+                    </div>
+                </section>
+            </main>
         </div>
-    </section>
-
-    <div id="main-content">
-        <div id="content-maps">
-            <div id="text-content">
-                <h1 style="padding: 10px 0 10px 0;margin-left: 10px;">Địa chỉ</h1>
-                <p style="margin-left: 10px;"><i class='bx bx-map' style="padding-right: 3px;font-size: 24px;"></i>227
-                    Phạm Văn Đồng, Bắc Từ Liêm, Hà Nội</p>
-            </div>
-            <div id="map">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.0287465242054!2d105.78344567485034!3d21.073795680586787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aacdb0944319%3A0xe529ed39f60dd3a4!2zMjI3IMSQLiBQaOG6oW0gVsSDbiDEkOG7k25nLCBYdcOibiDEkOG7iW5oLCBC4bqvYyBU4burIExpw6ptLCBIw6AgTuG7mWkgMTE5MDgsIFZp4buHdCBOYW0!5e1!3m2!1svi!2s!4v1762425372452!5m2!1svi!2s"
-                    style="border-radius:10px ; margin-left: 10px;" width="1000px" height="450" style="border:0;"
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-
+        <iframe class="map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.028746524204!2d105.78344567485033!3d21.073795680586784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aacdb0944319%3A0xe529ed39f60dd3a4!2zMjI3IMSQLiBQaOG6oW0gVsSDbiDEkOG7k25nLCBYdcOibiDEkOG7iW5oLCBC4bqvYyBU4burIExpw6ptLCBIw6AgTuG7mWkgMTE5MDgsIFZp4buHdCBOYW0!5e1!3m2!1svi!2s!4v1765106620205!5m2!1svi!2s"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <script src="/public/js/lienhe.js"></script>

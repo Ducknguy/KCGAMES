@@ -1,237 +1,254 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* ===========================
+   HEADER
+=========================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif !important;
-}
-
-/* HEADER CHUNG */
 #header {
-    width: 100%;
-    height: 100px;
+    position: sticky;
+    /* Đúng với logic JS updateBodyOffset */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 80px;
+    white-space: nowrap;
 
-    background-color: #fff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid #222f49;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
 
+    margin: 0;
+    /* Ép không có margin, kể cả khi còn CSS khác */
+    box-sizing: border-box;
+}
+
+#header.scrolled {
     position: fixed;
-    /* luôn dính trên cùng */
+    /* Lúc này header thật sự fixed */
     top: 0;
     left: 0;
-    z-index: 1000;
+    right: 0;
 
-    transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.164);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(14px);
 }
 
-/* Khi kéo xuống */
-#header.scrolled {
-    background: rgba(255, 255, 255, 0.808);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 1rem;
 }
 
-/* Logo */
+#logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .logo {
-    width: 100px;
-    height: 100px;
-    flex-shrink: 0;
-    margin: 0;
+    height: 36px;
+    display: block;
 }
 
 .logo-mobile {
     display: none;
-    margin: 0;
 }
 
-/* Menu desktop */
+.logo-text {
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* Nav */
+
 #menu {
-    flex-grow: 1;
+    flex: 1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
-
-/* Gtranslate wrapper styling */
-.gtranslate_wrapper {
-    display: inline-flex !important;
-    align-items: center;
-    margin-left: 15px;
-    position: relative !important;
-}
-
-/* Ensure gtranslate widget stays inline */
-.gtranslate_wrapper * {
-    position: relative !important;
-}
-
-/* Style the dropdown trigger */
-.gtranslate_wrapper a {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-}
-
 
 #navbar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
-    padding-right: 70px;
-
-}
-
-#navbar li {
+    gap: 1.75rem;
     list-style: none;
-    padding: 0 20px;
-    position: relative;
 }
 
-#navbar li a {
+.nav_link {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    color: #1a1a1a;
-    transition: 0.3s ease;
-    white-space: nowrap;
+    position: relative;
+    padding-bottom: 0.1rem;
+    transition: color 0.2s ease;
 }
 
-#navbar li a:hover,
-#navbar li a.active {
-    color: #000;
-    font-weight: 700;
-}
-
-#navbar li a.active::after,
-#navbar li a:hover::after {
+.nav_link::after {
     content: "";
-    width: 70%;
-    height: 3px;
-    background: #ea7225;
     position: absolute;
-    bottom: -4px;
-    left: 20px;
+    left: 0;
+    bottom: -0.2rem;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #38bdf8, #22c55e);
+    border-radius: 999px;
+    transition: width 0.2s ease;
 }
 
-/* Nút toggle mobile */
+.nav_link:hover {
+    color: #38bdf8;
+}
+
+.nav_link:hover::after {
+    width: 100%;
+}
+
+.gtranslate-item {
+    margin-left: 0.5rem;
+}
+
+/* Mobile toggle */
+
 #mobile-toggle {
     display: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
 }
 
-/* ====== ≤ 1200px ====== */
-@media only screen and (max-width: 1200px) {
+/* ===========================
+   RESPONSIVE HEADER
+=========================== */
+
+@media (min-width: 640px) {
     #header {
-        padding: 20px 50px;
-    }
-
-    #navbar li {
-        padding: 0 15px;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
     }
 }
 
-/* ====== ≤ 1024px (tablet) ====== */
-@media only screen and (max-width: 1024px) {
-    #header {
-        height: 120px;
-        padding: 20px 40px;
-    }
-
-    #navbar li {
-        padding: 0 8px;
-    }
-
-    #navbar li a {
-        font-size: 15px;
-    }
-
-    #navbar li a.active::after,
-    #navbar li a:hover::after {
-        left: 8px;
-    }
-}
-
-/* ====== ≤ 768px (mobile) ====== */
-@media only screen and (max-width: 768px) {
-
-    body,
-    html {
-        overflow-x: hidden;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .logo {
+@media (min-width: 768px) {
+    #mobile-toggle {
         display: none;
     }
+}
 
-    .logo-mobile {
-        display: block !important;
-        width: 70px;
-        height: 70px;
-    }
+@media (max-width: 767px) {
 
-    #header {
-        justify-content: space-between;
-        padding: 20px 40px;
-        height: 70px;
+
+    html,
+    body {
         width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
+    /* Header mobile */
+    #header {
+        width: 100%;
+        height: 70px;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
+        box-sizing: border-box;
+        background-color: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+    }
 
+    /* Nút hamburger / close */
     #mobile-toggle {
         display: block;
         font-size: 28px;
         cursor: pointer;
-        color: #1a1a1a;
+        color: #ffffff;
+        /* icon trắng nổi trên nền tối */
         z-index: 1100;
     }
 
+    /* NAVBAR MOBILE – SLIDE FROM RIGHT */
     #navbar {
+        position: fixed;
+        top: 70px;
+        /* đúng bằng chiều cao header mobile */
+        right: -100%;
+        /* ẩn hết ra ngoài màn hình */
+
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 70px);
+
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
+        gap: 20px;
 
-        position: fixed;
-        top: 70px;
-        /* bằng chiều cao header mobile */
-        right: -100%;
+        padding: 24px 20px 32px;
+        margin: 0;
+        list-style: none;
 
-        width: 80%;
-        max-width: 300px;
-        height: calc(100vh - 100px);
+        background-color: rgba(26, 26, 26, 0.85);
+        backdrop-filter: blur(10px);
+        box-shadow: -2px 0 20px rgba(0, 0, 0, 0.45);
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
 
-        background-color: #fff;
-        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.15);
-        padding: 30px 0 0 30px;
-        transition: all 0.35s ease;
+        overflow-y: auto;
+        transition: right 0.35s ease;
         z-index: 1050;
     }
 
+    /* Khi click mobile-toggle → JS thêm .active */
     #navbar.active {
         right: 0;
     }
 
     #navbar li {
         width: 100%;
-        margin-bottom: 25px;
     }
 
+    /* Link trong menu mobile */
     #navbar li a {
         display: block;
         width: 100%;
+
         font-size: 16px;
+        font-weight: 500;
         text-align: left;
-        color: #1a1a1a;
+        text-decoration: none;
+
+        color: #ffffff;
+        letter-spacing: 0.02em;
     }
 
+    /* Bỏ gạch chân hover kiểu desktop */
     #navbar li a::after {
         display: none;
+    }
+
+    /* Tăng cảm giác clickable khi hover */
+    #navbar li a:hover {
+        opacity: 0.9;
+    }
+
+    /* Nếu có GTranslate trong menu */
+    .gtranslate_wrapper select {
+        width: 100%;
+        margin-top: 8px;
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background-color: #111;
+        color: #fff;
+        font-size: 14px;
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -17,39 +17,67 @@
 
     <div id="header_sanpham"></div>
 
-    <img id="main_page" src="/public/Image/kcgames-logo-gif.gif" alt="Ảnh nền sản phẩm">
+    <div class="page">
+        <div class="page-inner">
+            <main class="main">
+                <!-- HERO có hiệu ứng zoom -->
+                <section class="hero-section reveal--zoom" data-delay="0s">
+                    <div class="hero">
+                        <div class="hero-image-wrapper">
+                            <img class="hero-image" src="/public/Image/bvack.jpg"
+                                alt="A dramatic scene from an epic fantasy game, with a hero overlooking a vast landscape.">
 
-    <section id="section-sanpham">
-        <div id="section-content-sanpham">
-            <div id="col-sanpham1">
+                            <div class="hero-gradient"></div>
 
-                <div class="game-card">
-                    <div class="image-wrapper">
-                        <img src="/public/Image/LogoGame.jpg" alt="TEN GAME Icon">
-
-                        <div class="game-overlay">
-                            <a href="https://play.google.com/store/apps/details?id=com.kcgames.trauphuot&hl=vi" class="view-more-link">
-                                Trâu Phượt
-                            </a>
+                            <div class="hero-text">
+                                <h1 class="hero-title">Khám Phá Thế Giới Game Của Chúng Tôi</h1>
+                                <p class="hero-subtitle">
+                                    Trải nghiệm những cuộc phiêu lưu đỉnh cao, những trận chiến hoành tráng
+                                    và những câu chuyện không thể nào quên đang chờ bạn.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <!-- <div class="game-card">
-                    <div class="image-wrapper">
-                        <img src="/public/Image/game1.png" alt="TEN GAME Icon">
-                        <div class="game-overlay">
-                            <a href="/public/sanpham.html" class="view-more-link">
-                                TEN GAME (Comming Soon)
-                            </a>
-                        </div>
+                <!-- Thư viện game trồi lên nhẹ -->
+                <section class="library-section reveal" data-delay="0.1s">
+                    <h2 class="section-title">Thư Viện Game</h2>
+
+                    <div class="chips">
+                        <button class="chip chip--active">Tất cả</button>
                     </div>
-                </div> -->
 
+                    <div class="game-grid">
+                        <!-- Card cũng zoom khi vào viewport -->
+                        <div class="game-card reveal--zoom" data-delay="0.2s"
+                            data-alt="Game cover art for Cyber Odyssey">
+                            <div class="card-image"
+                                style='background-image: linear-gradient(0deg, rgba(16, 22, 34, 0.8) 0%, rgba(16, 22, 34, 0) 50%), url("/public/Image/LogoGame.jpg");'>
+                                <div class="card-title-wrap">
+                                    <h3 class="card-title">Trâu Phượt</h3>
+                                    <div class="platforms">
+                                        <span class="platform-icon"><i class='bx bx-mobile-alt'></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-overlay">
+                                <button class="btn btn-primary btn-icon">
+                                    <a href="https://play.google.com/store/apps/details?id=com.kcgames.trauphuot&hl=vi"
+                                        target="_blank" rel="noopener">
+                                        Tải ngay
+                                    </a>
+                                </button>
+                            </div>
+                        </div>
 
-            </div>
+                        <!-- Các game khác sau này thêm vào thì chỉ cần copy game-card và giữ class reveal--zoom
+                             rồi chỉnh data-delay: 0.25s, 0.3s, 0.35s,... là đẹp -->
+                    </div>
+                </section>
+            </main>
         </div>
-    </section>
+    </div>
 
     <script src="/public/js/sanpham.js"></script>
     <div id="footer_sanpham"></div>

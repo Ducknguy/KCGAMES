@@ -1,253 +1,436 @@
-:root {
-    --page-bg: #F0F2F5;
-    --card-bg: #fff;
-    --gap: 20px;
-    --max-width: 1100px;
-    --radius: 12px;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
-    --accent: #ea7225;
-    --card-size: 320px;
+/* Reset đơn giản */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-body {
-    background-color: var(--page-bg);
-    font-family: Arial, sans-serif;
+body,
+h1,
+h2,
+h3,
+p,
+button {
     margin: 0;
     padding: 0;
 }
 
-#main_page {
-    width: 100%;
-    margin: 0;
-    height: 700px;
-    object-fit: cover;
+button {
+    border: none;
+    background: none;
+    font: inherit;
+    cursor: pointer;
 }
 
-#section-sanpham {
-    padding-top: 60px;
-    height: 500px;
-    background-color: #fff;
+/* Body */
+body {
+    font-family: "Alumni+Sans", system-ui, sans-serif;
+    background-color: #1a1a1a;
 }
 
-#section-content-sanpham {
-    display: flex;
-    justify-content: center;
-    padding: 20px 16px;
-    box-sizing: border-box;
-}
-
-
-#col-sanpham1 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap);
-    width: 100%;
-    max-width: var(--max-width);
-    justify-content: center;
-    align-items: flex-start;
-    box-sizing: border-box;
-}
-
-.game-card {
-    background-color: var(--card-bg);
-    border-radius: var(--radius);
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-    transition: transform 0.28s ease, box-shadow 0.28s ease;
-    position: relative;
-    overflow: hidden;
+/* Layout tổng */
+.page {
+    min-height: 100vh;
+    background-color: #1a1a1a;
     display: flex;
     flex-direction: column;
-    margin: 0 0 20px 0px;
-    flex: 0 0 auto;
-    flex-basis: var(--card-size);
-    max-width: var(--card-size);
-    min-width: 180px;
 }
 
-.game-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+.page-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 16px;
 }
 
-.image-wrapper {
+@media (min-width: 640px) {
+    .page-inner {
+        padding-inline: 40px;
+    }
+}
+
+@media (min-width: 768px) {
+    .page-inner {
+        padding-inline: 80px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .page-inner {
+        padding-inline: 160px;
+    }
+}
+
+/* Topbar */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #222f49;
+    padding: 12px 8px;
+}
+
+.logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    color: #256af4;
+}
+
+.logo-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* Nav desktop */
+.nav-desktop {
+    display: none;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+.nav-link--active {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Nút */
+.btn {
+    min-width: 84px;
+    padding: 0 16px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background-color: #256af4;
+    color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: rgba(37, 106, 244, 0.9);
+}
+
+/* Nút mobile menu */
+.nav-mobile-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background: transparent;
+}
+
+@media (min-width: 768px) {
+    .nav-desktop {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    .nav-mobile-btn {
+        display: none;
+    }
+}
+
+/* Main */
+.main {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Hero */
+.hero-section {
     width: 100%;
-    aspect-ratio: 1 / 1;
+}
+
+.hero {
+    width: 100%;
+}
+
+/* Khung chứa ảnh */
+.hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-height: 600px;
     overflow: hidden;
-    background: #f6f6f6;
-    display: block;
+    border-radius: 12px;
 }
 
-.image-wrapper img {
+/* Ảnh nền – hiển thị toàn bộ */
+.hero-image {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
+    object-fit: contain;
+    filter: blur(3px);
 }
 
-
-.game-overlay {
+/* Lớp gradient phủ lên ảnh */
+.hero-gradient {
     position: absolute;
     inset: 0;
+    background: linear-gradient(rgba(16, 22, 34, 0.4), rgba(16, 22, 34, 0.8));
+}
+
+/* Text nằm trên ảnh */
+.hero-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px 16px;
+    gap: 16px;
+}
+
+.hero-title {
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.033em;
+    color: #ffffff;
+}
+
+.hero-subtitle {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+@media (min-width: 480px) {
+    .hero {
+        border-radius: 12px;
+        padding: 32px 24px;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* Section Thư viện */
+.library-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.section-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    padding: 20px 16px 12px;
+    color: #fff;
+}
+
+/* Chips */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-inline: 16px;
+}
+
+.chip {
+    height: 32px;
+    padding-inline: 16px;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #222f49;
+    color: rgba(255, 255, 255, 0.8);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.chip--active {
+    background-color: #256af4;
+    color: #ffffff;
+}
+
+.chip:not(.chip--active):hover {
+    background-color: #314266;
+}
+
+/* Game grid */
+.game-grid {
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 24px;
+}
+
+@media (min-width: 640px) {
+    .game-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 768px) {
+    .game-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .game-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* Game card */
+.game-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.card-image {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: flex-end;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.platforms {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.platform-icon {
+    font-size: 1rem;
+}
+
+/* Overlay */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 16px;
+    border-radius: 12px;
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     display: flex;
-    align-items: end;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    transition: opacity .22s ease;
+    gap: 12px;
+    text-align: center;
+    transition: opacity 0.3s ease;
 }
 
-.game-card:hover .game-overlay {
+.card-overlay i {
+    color: #fff;
+}
+
+.card-overlay a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.card-desc {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Hover effect */
+.game-card:hover .card-image {
+    transform: scale(1.05);
+    box-shadow:
+        0 10px 15px -3px rgba(37, 106, 244, 0.2),
+        0 4px 6px -2px rgba(37, 106, 244, 0.1);
+}
+
+.game-card:hover .card-overlay {
     opacity: 1;
 }
 
-.game-overlay a{
-    font-size: 32px;
+/* Nút icon trong card */
+.btn-icon {
+    height: 40px;
+    padding-inline: 16px;
 }
 
-.view-more-link {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 8px 14px;
-    background: rgba(255, 255, 255, 0.04);
-    background-color: transparent;
-    height: 100%;
-    width: 100%;
+/* =============== Reveal animation (giống gioithieu) =============== */
+
+.reveal,
+.reveal--zoom {
+    opacity: 0;
+    will-change: opacity, transform;
+    transition:
+        opacity 0.7s cubic-bezier(.15, .75, .35, 1),
+        transform 0.7s cubic-bezier(.15, .75, .35, 1);
 }
 
-
-.text-info {
-    padding: 14px;
-    box-sizing: border-box;
+.reveal {
+    transform: translateY(32px);
 }
 
-.text-info h4 {
-    margin: 0 0 6px 0;
-    font-size: 1.05rem;
-    color: #222;
+.reveal--zoom {
+    transform: scale(0.94);
 }
 
-.text-info p {
-    margin: 0;
-    color: #666;
-    font-size: 0.95rem;
-}
-
-@media only screen and (max-width: 1200px) {
-
-    :root {
-        --max-width: 900px;
-        --card-size: 280px;
-    }
-
-    #main_page {
-        height: 550px;
-    }
-
-    #section-sanpham {
-        padding-top: 40px;
-    }
-
-    #col-sanpham1 {
-        padding: 0 10px;
-    }
-
-    .game-card {
-        margin: 0 10px 0 10px;
-    }
-}
-
-@media only screen and (max-width: 1024px) {
-
-    :root {
-        --max-width: 700px;
-        --card-size: 250px;
-    }
-
-    #main_page {
-        height: 400px;
-    }
-
-    #section-sanpham {
-        height: auto;
-        min-height: 500px;
-    }
-
-    #col-sanpham1 {
-        padding: 0;
-        justify-content: space-around;
-    }
-
-    .game-card {
-        flex-basis: var(--card-size);
-        margin: 0 5px 20px 5px;
-    }
-}
-
-@media only screen and (min-width:490px) and (max-width:768px) {
-    .game-card {
-        width: 90%;
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
-        height: auto;
-    }
-
-    .image-wrapper {
-        width: 100%;
-        height: auto;
-    }
-
-    #col-sanpham1 {
-        padding: 20px 0;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-
-    :root {
-        --card-size: 80vw;
-        --gap: 15px;
-    }
-
-    #main_page {
-        height: 250px;
-
-        padding-top: 0;
-    }
-
-    #section-sanpham {
-        padding-top: 20px;
-        min-height: 300px;
-    }
-
-    #col-sanpham1 {
-        flex-direction: column;
-        align-items: center;
-        padding: 0;
-    }
-
-    .game-card {
-        flex-basis: var(--card-size);
-        max-width: 400px;
-        width: 100%;
-        margin: 0 0 20px 0;
-    }
-
-    .game-card:hover {
-        transform: none;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
-    }
-
-    .game-overlay {
-        opacity: 1 !important;
-        align-items: center;
-    }
-
-    .view-more-link {
-        font-size: 1rem;
-        padding: 10px 20px;
-        background-color: rgba(0, 0, 0, 0.6);
-        border-radius: 5px;
-    }
+.reveal.is-visible,
+.reveal--zoom.is-visible {
+    opacity: 1;
+    transform: none;
 }

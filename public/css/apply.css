@@ -1,83 +1,375 @@
+/* ============ BASE ============ */
+
 :root {
-    --primary: #ea7225;
-    --primary-dark: #d65f16;
-    --text: #2d3748;
-    --gray: #718096;
-    --border: #e2e8f0;
-    --white: #ffffff;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --primary: #256af4;
+    --background-dark: #101622;
+    --card-bg: #1a2232;
+    --accent: #f97316;
+    --accent-hover: #ea580c;
+    --text-main: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.8);
+    --border-subtle: rgba(255, 255, 255, 0.2);
+    --shadow-strong: 0 18px 45px rgba(0, 0, 0, 0.55);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
-    background-image: url(../Image/background2.png);
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    margin: 0;
+    min-height: 100vh;
+    background-color: #1a1a1a;
+    color: var(--text-main);
 }
 
-#application_modal {
+/* Ẩn chỉ cho screen reader (dùng cho input file) */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ============ LAYOUT ============ */
+
+.page {
     min-height: 100vh;
-    padding: 0px 20px 50px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.layout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 16px 32px;
+}
+
+@media (min-width: 640px) {
+    .layout {
+        padding-inline: 32px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .layout {
+        padding-inline: 80px;
+    }
+}
+
+.site-header {
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 12px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-main);
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--primary);
+}
+
+.logo-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-text {
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin: 0;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Ẩn nav trên mobile (giống hidden md:flex) */
+@media (max-width: 767.98px) {
+    .nav-actions {
+        display: none;
+    }
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+.nav-link--active {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.page-main {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 32px 0;
 }
 
-#modal-content {
+.apply-card {
+    background-color: #262626;
+    border-radius: 0.75rem;
+    padding: 32px 20px;
+    max-width: 768px;
     width: 100%;
-    max-width: 800px;
-    background: var(--white);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    padding: 40px;
+    box-shadow: var(--shadow-strong);
 }
 
-#modal-content h2 {
-    font-size: 28px;
-    color: var(--text);
+@media (min-width: 768px) {
+    .apply-card {
+        padding: 48px 40px;
+    }
+}
+
+.apply-title {
+    font-size: 2rem;
+    font-weight: 700;
     text-align: center;
-    margin-bottom: 32px;
-    font-weight: 600;
+    margin: 0 0 32px;
 }
 
+@media (min-width: 768px) {
+    .apply-title {
+        font-size: 2.25rem;
+    }
+}
 
-#form_apply {
+/* ============ FORM ============ */
+
+.apply-form {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    width: 100%;
 }
 
-
-#ten-email {
-    display: flex;
-    gap: 20px;
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
 }
 
-#ten-email input,
-#sdt,
-#jobPositionSelect,
-#note {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 16px;
-    color: var(--text);
-    transition: all 0.3s ease;
+@media (min-width: 768px) {
+    .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
-
-#CV {
+.form-field {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Input, select, textarea chung */
+.form-control {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-subtle);
+    background-color: #101622;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.form-control:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.6);
+}
+
+/* Select */
+.select-control {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%),
+        linear-gradient(135deg, #ffffff 50%, transparent 50%);
+    background-position: calc(100% - 18px) calc(50% - 3px),
+        calc(100% - 12px) calc(50% - 3px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+}
+
+/* Textarea */
+.textarea-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* ============ FILE UPLOAD ============ */
+
+.file-upload {
+    margin-top: 4px;
+}
+
+.file-upload-inner {
+    border-radius: 0.75rem;
+    border: 2px dashed var(--border-subtle);
+    padding: 20px 16px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.file-upload-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 8px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.file-upload-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.875rem;
+}
+
+.file-upload-label {
+    position: relative;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    padding-inline: 4px;
+}
+
+.file-upload-label:hover {
+    color: var(--accent-hover);
+}
+
+.file-upload-or {
+    margin: 0;
+    padding-left: 4px;
+    font-size: 0.875rem;
+}
+
+.file-upload-note {
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ============ BUTTONS ============ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    padding: 10px 16px;
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #1e56cc;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px 18px;
+    background-color: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+}
+
+.btn-submit:hover {
+    background-color: var(--accent-hover);
+    box-shadow: 0 12px 30px rgba(234, 88, 12, 0.35);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:focus-visible {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.9);
+}
+
+/* Form actions */
+.form-actions {
+    margin-top: 8px;
+}
+
+#CV {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
 #CV label {
-    color: var(--gray);
-    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px !important;
+    font-weight: 500;
 }
 
 #CV input[type="file"] {
@@ -91,82 +383,7 @@ body {
     border-color: var(--primary);
 }
 
-
-#vitriungtuyen {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-#vitriungtuyen label {
-    color: var(--gray);
-    font-size: 14px;
-}
-
-
-#note {
-    min-height: 120px;
-    resize: vertical;
-}
-
-
-input:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(234, 114, 37, 0.1);
-}
-
-
-#btn_send {
-    background: var(--primary);
-    color: var(--white);
-    padding: 16px 32px;
-    border: none;
-    border-radius: 8px;
+#resume {
     font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    align-self: center;
-    min-width: 200px;
-    position: relative;
-    overflow: hidden;
-}
-
-#btn_send:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(234, 114, 37, 0.3);
-}
-
-#btn_send:active {
-    transform: translateY(0);
-}
-
-#btn_send:disabled {
-    background: var(--gray);
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
-
-#btn_send.loading {
-    color: transparent;
-}
-
-#btn_send.loading::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 50%;
-    left: 50%;
-    margin: -10px 0 0 -10px;
-    border: 2px solid var(--white);
-    border-radius: 50%;
-    border-right-color: transparent;
-    animation: spin 0.8s linear infinite;
+    background-color: #101622;
 }
