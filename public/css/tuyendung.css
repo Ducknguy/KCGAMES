@@ -12,30 +12,33 @@
 
 html,
 body {
-    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    /* tránh tràn ngang gây lệch header */
 }
 
 body {
     font-family: "Alumni+Sans", system-ui, sans-serif;
     background-color: #1a1a1a;
     color: #ffffff;
-    margin: 0;
 }
 
-/* Remove link underline */
+/* Link */
 a {
     text-decoration: none;
     color: inherit;
 }
 
 /* ===========================
-   LAYOUT
+   PAGE LAYOUT
 =========================== */
 
 .page {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #1a1a1a;
 }
 
 .layout {
@@ -48,27 +51,31 @@ a {
     flex: 1;
     display: flex;
     justify-content: center;
-    padding: 20px 16px;
+    padding: 16px 16px 40px;
 }
 
+/* Tablet nhỏ */
 @media (min-width: 640px) {
     .layout-inner {
-        padding: 20px 32px;
+        padding-inline: 32px;
     }
 }
 
+/* Tablet ngang */
 @media (min-width: 768px) {
     .layout-inner {
-        padding: 20px 80px;
+        padding-inline: 80px;
     }
 }
 
+/* Desktop */
 @media (min-width: 1024px) {
     .layout-inner {
-        padding: 20px 160px;
+        padding-inline: 160px;
     }
 }
 
+/* Khối chính */
 .main-content {
     width: 100%;
     max-width: 960px;
@@ -89,14 +96,17 @@ a {
     align-items: center;
     justify-content: center;
     padding: 0 16px;
-    border-radius: 8px;
+    border-radius: 999px;
     height: 40px;
     border: none;
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 0.015em;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease,
+        box-shadow 0.15s ease;
     white-space: nowrap;
 }
 
@@ -104,17 +114,33 @@ a {
     background-color: transparent;
     color: #ffffff;
     border: 1px solid #256af4;
-    border-radius: 20px;
 }
 
 .btn-primary:hover {
     transform: translateY(-1px);
-    background-color: #1a1a1a;
+    background-color: rgba(37, 106, 244, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
-/* Apply button inside job card */
+/* Chứa link bên trong button */
+.btn-primary a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Button "Xem chi tiết" trong job */
 .job-apply-btn {
-    max-width: 150px;
+    max-width: 160px;
+}
+
+/* Mobile: cho nút full-width nếu thích */
+@media (max-width: 480px) {
+    .job-apply-btn {
+        width: 100%;
+        max-width: none;
+    }
 }
 
 /* ===========================
@@ -123,14 +149,16 @@ a {
 
 .hero {
     border-radius: 16px;
-    min-height: 340px;
-    padding: 16px;
+    min-height: 260px;
+    padding: 18px 14px;
     background-image:
-        linear-gradient(rgba(16, 22, 34, 0.6) 0%, rgba(16, 22, 34, 0.9) 100%),
+        linear-gradient(rgba(16, 22, 34, 0.7) 0%,
+            rgba(16, 22, 34, 0.92) 100%),
         url("https://lh3.googleusercontent.com/aida-public/AB6AXuANth3Cik5W73N3uBYItTrDcNbMX0a8xU8Sfcq-FoiOUsp1ql-pCE4kY1a1H4je2OQGXXXDHhY1kpAjSUe2LrJ3cqMKnzkQ-80Ta7tKQD4SZ6Z2OEdbCGDImBvAXWdqVd2fIAtyvgA1qDOI5A-YLukXRvuHWOVwPyVrViMD1CVlkMRj2ma1ngri4LQP17X-tXwkAKCoAr-qjJS3Gfv-gYiih8e-TsMVqU3Jr35P0UYJmgp9e48hODqWrHniBetNDLjsEwU3TcglbeTJ");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -141,27 +169,61 @@ a {
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .hero-title {
-    font-size: 2.2rem;
-    line-height: 1.1;
+    font-size: 1.9rem;
+    line-height: 1.15;
     font-weight: 900;
     letter-spacing: -0.033em;
     color: #ffffff;
 }
 
 .hero-subtitle {
-    margin-top: 8px;
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.8);
+    margin-top: 4px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
 }
 
+/* Mobile rất nhỏ */
+@media (max-width: 380px) {
+    .hero-title {
+        font-size: 1.6rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.85rem;
+    }
+}
+
+/* >= 480px */
 @media (min-width: 480px) {
     .hero {
-        min-height: 480px;
-        padding: 24px;
+        min-height: 340px;
+        padding: 24px 18px;
+    }
+
+    .hero-title {
+        font-size: 2.3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+}
+
+/* >= 768px */
+@media (min-width: 768px) {
+    .hero {
+        min-height: 420px;
+        padding: 28px 24px;
     }
 
     .hero-title {
@@ -174,13 +236,20 @@ a {
 }
 
 /* ===========================
-   JOB LIST
+   JOB LIST WRAPPER
 =========================== */
 
 .jobs {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(15, 23, 42, 0.7);
 }
+
+/* ===========================
+   JOB CARD
+=========================== */
 
 .job-card {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -199,12 +268,15 @@ a {
     background-color: #262626;
 }
 
+/* Header của job (tiêu đề + meta + icon) */
 .job-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px;
+    gap: 16px;
+    padding: 18px 16px;
     cursor: pointer;
+    background-color: #262626;
 }
 
 .job-header-text {
@@ -213,15 +285,17 @@ a {
     gap: 6px;
 }
 
+/* Tiêu đề job */
 .job-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
 }
 
+/* Thông tin meta dưới title */
 .job-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px 16px;
+    gap: 10px 16px;
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.6);
 }
@@ -232,9 +306,11 @@ a {
     gap: 6px;
 }
 
+/* Icon mở rộng */
 .job-expand-icon {
     color: rgba(255, 255, 255, 0.7);
     transition: color 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
 }
 
 .job-card:hover .job-expand-icon {
@@ -246,24 +322,45 @@ a {
     color: #ffffff;
 }
 
+/* Mobile: cho header giãn dòng, không dí sát icon */
+@media (max-width: 600px) {
+    .job-header {
+        align-items: flex-start;
+    }
+
+    .job-title {
+        font-size: 0.98rem;
+    }
+}
+
+/* Desktop: cho title to hơn chút */
+@media (min-width: 900px) {
+    .job-title {
+        font-size: 1.1rem;
+    }
+}
+
 /* ===========================
-   JOB BODY (EXPANDED)
+   JOB BODY (EXPANDED CONTENT)
 =========================== */
 
 .job-body {
-    padding: 0 24px 24px 24px;
+    padding: 0 16px 16px 16px;
     display: none;
     flex-direction: column;
     gap: 20px;
     font-size: 0.9rem;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.82);
+    background-color: #262626;
 }
 
+/* Khi card active → hiện body */
 .job-card--active .job-body {
     display: flex;
 }
 
+/* Mỗi block trong body (Nhiệm vụ, Quyền lợi...) */
 .job-section {
     display: flex;
     flex-direction: column;
@@ -275,6 +372,7 @@ a {
     color: #ffffff;
 }
 
+/* List bullet */
 .job-list {
     list-style: disc inside;
     display: flex;
@@ -282,9 +380,25 @@ a {
     gap: 4px;
 }
 
+/* Khoảng dưới cùng cho nút */
+.job-body .btn {
+    margin-top: 4px;
+}
+
+/* Tablet trở lên: cho padding thoáng hơn */
+@media (min-width: 768px) {
+    .job-header {
+        padding: 22px 24px;
+    }
+
+    .job-body {
+        padding: 0 24px 24px 24px;
+    }
+}
+
 /* ===========================
    REVEAL ANIMATION
-   (thêm mới, không ảnh hưởng layout cũ)
+   (Scroll vào thì trượt / zoom nhẹ)
 =========================== */
 
 .reveal,
@@ -301,12 +415,12 @@ a {
     transform: translateY(32px);
 }
 
-/* Zoom nhẹ cho hero */
+/* Zoom nhẹ (dùng cho hero) */
 .reveal--zoom {
     transform: scale(0.94);
 }
 
-/* Khi đã visible */
+/* Khi đã visible (JS thêm class is-visible) */
 .reveal.is-visible,
 .reveal--zoom.is-visible {
     opacity: 1;

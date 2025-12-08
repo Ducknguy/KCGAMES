@@ -24,6 +24,12 @@
     --strokeLight: rgba(255, 255, 255, 0.25);
 }
 
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 html {
     font-family: 'Space Grotesk', sans-serif;
     scroll-behavior: smooth;
@@ -266,7 +272,7 @@ body {
 =========================== */
 
 .features {
-    padding: 4rem 0 3.5rem;
+    padding: 4rem 0 3.5rem 0;
     background-color: #262626;
     border-top: 1px solid #222f49;
     border-bottom: 1px solid #222f49;
@@ -823,5 +829,273 @@ body {
         object-fit: cover;
         /* ảnh căng đầy khung, không méo */
         display: block;
+    }
+}
+
+/* Ngăn tràn ngang trên màn hình nhỏ */
+@media (max-width: 1024px) {
+    body {
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Layout chung */
+    #wrapper {
+        align-items: stretch;
+        /* cho section full width, không bị gom vào giữa */
+        gap: 1.25rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .section {
+        padding: 0 0 3rem 0;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+        padding-top: 50px;
+    }
+
+    /* HERO */
+    .hero-media {
+        margin-top: 4rem;
+        border-radius: 0.5rem;
+        max-width: 100%;
+    }
+
+    /* ABOUT */
+    .section-about {
+        padding-top: 1.5rem;
+    }
+
+    .about-container {
+        margin-top: 2rem;
+        padding: 2.5rem 1rem 2.5rem 0;
+    }
+
+    /* tránh phần background lệch sang bên phải gây tràn */
+    .about-child {
+        right: 0;
+        border-radius: 0 28px 28px 0;
+    }
+
+    .about-inner {
+        left: 0;
+    }
+
+    .about-layout {
+        padding: 1.5rem 1.25rem;
+        border-radius: 0 24px 24px 0;
+    }
+
+    .about-left {
+        padding: 0;
+    }
+
+    .about-paragraph {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .about-right {
+        margin-right: 0;
+        width: 100%;
+        max-width: 320px;
+        align-self: center;
+    }
+
+    .about-photo-card {
+        max-width: 100%;
+    }
+
+    /* PRODUCT */
+    .product-card {
+        border-radius: 1.25rem;
+    }
+
+    .product-media {
+        padding: 1.5rem 1.25rem 1.5rem;
+    }
+
+    .product-main {
+        height: 220px;
+    }
+
+    .product-content {
+        padding: 1.5rem 1.25rem 2rem;
+    }
+
+    .product-title {
+        font-size: 1.4rem;
+    }
+
+    .product-description {
+        font-size: 0.92rem;
+    }
+
+    /* BLOG / ACTIVITIES */
+    .blog-section {
+        padding: 2.5rem 1rem 0;
+    }
+
+    .section-heading {
+        font-size: 1.7rem;
+    }
+
+    .blog-image {
+        height: 170px;
+    }
+
+    .blog-date {
+        font-size: 1rem;
+    }
+
+    .btn-outline {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    html {
+        font-size: 14px;
+    }
+
+    .hero-media {
+        margin-top: 3.5rem;
+        border-radius: 0;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+        padding-top: 50px;
+    }
+
+    /* ABOUT */
+    .about-container {
+        margin-top: 1.5rem;
+        padding: 2rem 0.75rem 2rem 0;
+    }
+
+    .about-layout {
+        padding: 1.25rem 1rem;
+        border-radius: 0 20px 20px 0;
+    }
+
+    .about-paragraph {
+        font-size: 0.95rem;
+    }
+
+    /* PRODUCT */
+    .product-main {
+        height: 190px;
+    }
+
+    .product-thumbs {
+        gap: 0.5rem;
+    }
+
+    .product-thumb img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .product-content {
+        padding: 1.25rem 1rem 1.75rem;
+    }
+
+    .product-title {
+        font-size: 1.3rem;
+    }
+
+    /* BLOG */
+    .blog-article {
+        padding: 0.75rem;
+    }
+
+    .blog-title {
+        font-size: 1rem;
+    }
+
+    .blog-image {
+        height: 150px;
+    }
+
+    .blog-excerpt {
+        font-size: 0.86rem;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .product-main {
+        height: 170px;
+    }
+
+    .product-thumb img {
+        width: 56px;
+        height: 56px;
+    }
+
+    .section-heading {
+        font-size: 1.4rem;
+    }
+
+    .blog-date {
+        font-size: 0.9rem;
+    }
+}
+
+/* Fix scroll lệch responsive do phần ABOUT */
+@media (max-width: 900px) {
+
+    /* tránh section này gây overflow ngang */
+    .section-about {
+        overflow-x: hidden;
+    }
+
+    .about-container {
+        margin-top: 2rem;
+        padding: 2.5rem 1.5rem 2.5rem 0;
+    }
+
+    /* Nền phía sau card: ôm đúng màn hình, không tràn */
+    .about-child {
+        left: 0;
+        right: 0;
+        width: 100%;
+        border-radius: 0 24px 24px 0;
+    }
+
+    /* đường kẻ dọc: cho dính mép trái */
+    .about-inner {
+        left: 0;
+    }
+
+    .about-layout {
+        padding: 1.5rem 1.25rem;
+        border-radius: 0 24px 24px 0;
+    }
+
+    .about-left {
+        padding: 0;
+    }
+
+    .about-right {
+        margin-right: 0;
+        width: 100%;
+        max-width: 320px;
+        align-self: center;
     }
 }

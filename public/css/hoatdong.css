@@ -1,12 +1,32 @@
-/* GLOBAL */
+/* ===========================
+   RESET & GLOBAL
+=========================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
 body {
     margin: 0;
     padding: 0;
-    background-color: #1a1a1a;
-    font-family: "Alumni+Sans", system-ui, sans-serif;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    /* tránh tràn ngang gây lệch */
 }
 
-/* HERO – giống style bên giới thiệu, mờ dần ở chân */
+/* GLOBAL */
+body {
+    background-color: #1a1a1a;
+    font-family: "Alumni+Sans", system-ui, sans-serif;
+    color: #ffffff;
+}
+
+/* ===========================
+   HERO – nền ảnh + gradient
+=========================== */
+
 .hero-hoatdong {
     position: relative;
     width: 100%;
@@ -15,23 +35,18 @@ body {
     align-items: flex-end;
     justify-content: center;
 
-    /* Ảnh nền */
     background-image:
         linear-gradient(to bottom,
             rgba(26, 26, 26, 0.0) 0%,
-            /* trên gần như trong suốt */
             rgba(26, 26, 26, 0.35) 55%,
-            /* giữa bắt đầu tối nhẹ */
-            #1a1a1a 100%
-            /* chân ảnh trùng màu body */
-        ),
+            #1a1a1a 100%),
         url("/public/Image/Thanhvien/BackgrounDoTay.jpg");
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
 }
 
-/* Nếu muốn text trong hero */
+/* Text trong hero (hiện đang comment trong HTML) */
 .hero-hoatdong-content {
     padding: 3rem 1.5rem 4.5rem;
     text-align: center;
@@ -52,29 +67,20 @@ body {
     line-height: 1.7;
 }
 
-/* Responsive nhẹ cho hero */
-@media (max-width: 768px) {
-    .hero-hoatdong {
-        min-height: 50vh;
-    }
+/* ===========================
+   MAIN WRAPPER
+=========================== */
 
-    .hero-hoatdong-content {
-        padding: 2.5rem 1.25rem 3.5rem;
-    }
-
-    .hero-hoatdong-content h1 {
-        font-size: 2.1rem;
-    }
-}
-
-/* Wrapper */
 #wrapper {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px 80px;
 }
 
-/* Header text */
+/* ===========================
+   HEADER TEXT
+=========================== */
+
 #text-header {
     text-align: center;
     max-width: 800px;
@@ -86,32 +92,39 @@ body {
     margin-bottom: 15px;
     color: #ffffff;
     font-weight: 700;
+    letter-spacing: 0.08em;
 }
 
 #text-header p {
     font-size: 1.05rem;
     color: #bbbbbb;
     line-height: 1.7;
+    margin: 0;
 }
 
-/* Activity list (layout B - kiểu blog, hình trái, text phải) */
+/* ===========================
+   ACTIVITY LIST (blog style)
+=========================== */
+
 #activity-list {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
-/* Mỗi item */
+/* Mỗi activity */
 .activity-item {
     display: grid;
     grid-template-columns: minmax(260px, 340px) 1fr;
     gap: 24px;
+
     background-color: #262626;
     border-radius: 12px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
     overflow: hidden;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .activity-item:hover {
@@ -119,7 +132,7 @@ body {
     box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
 }
 
-/* Thumbnail */
+/* Thumbnail trái */
 .activity-thumb {
     width: 100%;
     height: 100%;
@@ -134,7 +147,7 @@ body {
     display: block;
 }
 
-/* Content */
+/* Nội dung phải */
 .activity-content {
     padding: 18px 22px 20px;
     display: flex;
@@ -180,8 +193,16 @@ body {
     font-size: 1.1rem;
 }
 
-/* RESPONSIVE */
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+/* <= 1024px: tablet ngang */
 @media (max-width: 1024px) {
+    #wrapper {
+        padding: 36px 20px 70px;
+    }
+
     #text-header h1 {
         font-size: 2.4rem;
     }
@@ -189,14 +210,30 @@ body {
     .activity-item {
         grid-template-columns: minmax(240px, 320px) 1fr;
     }
-
 }
 
+/* <= 768px: tablet dọc / mobile lớn */
 @media (max-width: 768px) {
 
+    .hero-hoatdong {
+        min-height: 50vh;
+        background-position: center center;
+    }
+
+    .hero-hoatdong-content {
+        padding: 2.5rem 1.25rem 3.5rem;
+    }
+
+    .hero-hoatdong-content h1 {
+        font-size: 2.1rem;
+    }
 
     #wrapper {
         padding: 30px 15px 60px;
+    }
+
+    #text-header {
+        margin-bottom: 40px;
     }
 
     #text-header h1 {
@@ -207,6 +244,7 @@ body {
         font-size: 0.98rem;
     }
 
+    /* Activity: xếp dọc, ảnh trên – text dưới */
     .activity-item {
         grid-template-columns: 1fr;
     }
@@ -214,9 +252,98 @@ body {
     .activity-thumb {
         max-height: 220px;
     }
+
+    .activity-content {
+        padding: 16px 18px 18px;
+    }
+
+    .activity-title {
+        font-size: 1.25rem;
+    }
+
+    .activity-desc {
+        font-size: 0.95rem;
+    }
 }
 
-/* Scroll reveal */
+/* <= 480px: mobile nhỏ */
+@media (max-width: 480px) {
+
+    .hero-hoatdong {
+        min-height: 45vh;
+    }
+
+    .hero-hoatdong-content {
+        padding: 2.25rem 1.1rem 3rem;
+    }
+
+    .hero-hoatdong-content h1 {
+        font-size: 1.9rem;
+        letter-spacing: 0.1em;
+    }
+
+    #wrapper {
+        padding: 26px 12px 50px;
+    }
+
+    #text-header h1 {
+        font-size: 1.8rem;
+    }
+
+    #text-header p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .activity-item {
+        gap: 16px;
+        border-radius: 10px;
+    }
+
+    .activity-thumb {
+        max-height: 200px;
+    }
+
+    .activity-content {
+        padding: 14px 14px 16px;
+    }
+
+    .activity-meta {
+        font-size: 0.8rem;
+    }
+
+    .activity-title {
+        font-size: 1.15rem;
+    }
+
+    .activity-desc {
+        font-size: 0.9rem;
+    }
+
+    .activity-readmore {
+        font-size: 0.9rem;
+    }
+}
+
+/* Rất nhỏ (<= 360px) */
+@media (max-width: 360px) {
+    #wrapper {
+        padding-inline: 10px;
+    }
+
+    #text-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .activity-thumb {
+        max-height: 180px;
+    }
+}
+
+/* ===========================
+   SCROLL REVEAL
+=========================== */
+
 .scroll-reveal {
     opacity: 0;
     transform: translateY(40px);

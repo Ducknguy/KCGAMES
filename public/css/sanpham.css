@@ -1,34 +1,33 @@
-/* Reset đơn giản */
+/* ===========================
+   RESET & GLOBAL
+=========================== */
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
-body,
-h1,
-h2,
-h3,
-p,
-button {
+html,
+body {
     margin: 0;
     padding: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    /* tránh tràn ngang */
 }
 
-button {
-    border: none;
-    background: none;
-    font: inherit;
-    cursor: pointer;
-}
-
-/* Body */
 body {
     font-family: "Alumni+Sans", system-ui, sans-serif;
     background-color: #1a1a1a;
+    color: #ffffff;
 }
 
-/* Layout tổng */
+/* ===========================
+   PAGE LAYOUT
+=========================== */
+
 .page {
     min-height: 100vh;
     background-color: #1a1a1a;
@@ -61,110 +60,10 @@ body {
     }
 }
 
-/* Topbar */
-.topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #222f49;
-    padding: 12px 8px;
-}
+/* ===========================
+   MAIN
+=========================== */
 
-.logo-wrap {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #ffffff;
-}
-
-.logo-icon {
-    width: 24px;
-    height: 24px;
-    color: #256af4;
-}
-
-.logo-text {
-    font-size: 1.1rem;
-    font-weight: 700;
-}
-
-/* Nav desktop */
-.nav-desktop {
-    display: none;
-    align-items: center;
-    gap: 32px;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-
-.nav-link {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.nav-link:hover {
-    color: #ffffff;
-}
-
-.nav-link--active {
-    color: #ffffff;
-    font-weight: 700;
-}
-
-/* Nút */
-.btn {
-    min-width: 84px;
-    padding: 0 16px;
-    height: 40px;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    white-space: nowrap;
-}
-
-.btn-primary {
-    background-color: #256af4;
-    color: #ffffff;
-    transition: background-color 0.2s ease;
-}
-
-.btn-primary:hover {
-    background-color: rgba(37, 106, 244, 0.9);
-}
-
-/* Nút mobile menu */
-.nav-mobile-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    background: transparent;
-}
-
-@media (min-width: 768px) {
-    .nav-desktop {
-        display: flex;
-        flex: 1;
-        justify-content: flex-end;
-    }
-
-    .nav-mobile-btn {
-        display: none;
-    }
-}
-
-/* Main */
 .main {
     margin-top: 20px;
     display: flex;
@@ -172,7 +71,10 @@ body {
     gap: 40px;
 }
 
-/* Hero */
+/* ===========================
+   HERO
+=========================== */
+
 .hero-section {
     width: 100%;
 }
@@ -190,7 +92,7 @@ body {
     border-radius: 12px;
 }
 
-/* Ảnh nền – hiển thị toàn bộ */
+/* Ảnh nền – hiển thị toàn bộ, hơi blur nhẹ */
 .hero-image {
     width: 100%;
     height: auto;
@@ -203,7 +105,8 @@ body {
 .hero-gradient {
     position: absolute;
     inset: 0;
-    background: linear-gradient(rgba(16, 22, 34, 0.4), rgba(16, 22, 34, 0.8));
+    background: linear-gradient(rgba(16, 22, 34, 0.5),
+            rgba(16, 22, 34, 0.9));
 }
 
 /* Text nằm trên ảnh */
@@ -231,14 +134,29 @@ body {
     font-size: 0.875rem;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.9);
+    max-width: 640px;
 }
 
+/* Mobile cực nhỏ */
+@media (max-width: 370px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* >= 480px: text lớn hơn */
 @media (min-width: 480px) {
-    .hero {
-        border-radius: 12px;
-        padding: 32px 24px;
+    .hero-title {
+        font-size: 2.4rem;
     }
 
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+}
+
+/* >= 768px: hero rộng, chữ to */
+@media (min-width: 768px) {
     .hero-title {
         font-size: 3rem;
     }
@@ -248,7 +166,10 @@ body {
     }
 }
 
-/* Section Thư viện */
+/* ===========================
+   LIBRARY SECTION
+=========================== */
+
 .library-section {
     display: flex;
     flex-direction: column;
@@ -256,18 +177,21 @@ body {
 }
 
 .section-title {
-    font-size: 1.375rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    padding: 20px 16px 12px;
+    padding: 20px 4px 12px;
     color: #fff;
 }
 
-/* Chips */
+/* ===========================
+   CHIPS FILTER
+=========================== */
+
 .chips {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    padding-inline: 16px;
+    padding: 0 4px 8px;
 }
 
 .chip {
@@ -281,6 +205,8 @@ body {
     justify-content: center;
     background-color: #222f49;
     color: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -293,9 +219,12 @@ body {
     background-color: #314266;
 }
 
-/* Game grid */
+/* ===========================
+   GAME GRID
+=========================== */
+
 .game-grid {
-    padding: 16px;
+    padding: 16px 4px 32px;
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 24px;
@@ -319,13 +248,17 @@ body {
     }
 }
 
-/* Game card */
+/* ===========================
+   GAME CARD
+=========================== */
+
 .game-card {
     position: relative;
     overflow: hidden;
     border-radius: 12px;
 }
 
+/* Ảnh nền của card (dùng background-image inline) */
 .card-image {
     position: relative;
     aspect-ratio: 3 / 4;
@@ -361,7 +294,7 @@ body {
     font-size: 1rem;
 }
 
-/* Overlay */
+/* Overlay trên card khi hover */
 .card-overlay {
     position: absolute;
     inset: 0;
@@ -376,10 +309,6 @@ body {
     gap: 12px;
     text-align: center;
     transition: opacity 0.3s ease;
-}
-
-.card-overlay i {
-    color: #fff;
 }
 
 .card-overlay a {
@@ -404,13 +333,45 @@ body {
     opacity: 1;
 }
 
-/* Nút icon trong card */
+/* ===========================
+   BUTTONS
+=========================== */
+
+.btn {
+    min-width: 84px;
+    padding: 0 16px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #256af4;
+    color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: rgba(37, 106, 244, 0.9);
+}
+
 .btn-icon {
     height: 40px;
     padding-inline: 16px;
 }
 
-/* =============== Reveal animation (giống gioithieu) =============== */
+/* ===========================
+   REVEAL ANIMATION
+   (giống trang giới thiệu)
+=========================== */
 
 .reveal,
 .reveal--zoom {

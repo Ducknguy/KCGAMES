@@ -18,6 +18,8 @@
     padding: 0;
 }
 
+
+
 body {
     font-family: "Alumni+Sans", system-ui, sans-serif;
     background-color: #1a1a1a;
@@ -252,6 +254,7 @@ main {
     .features-container {
         padding: 3rem 4.5rem;
     }
+
 }
 
 /* ==== Heading giữa ==== */
@@ -706,4 +709,205 @@ footer {
 .scroll-reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+
+    .content-wrapper {
+        padding: 4rem 0 6rem;
+    }
+
+    .content-inner {
+        padding: 0 1.5rem;
+        gap: 3.5rem;
+    }
+
+    #section-thanhvien {
+        padding: 0 1.5rem 80px;
+    }
+
+    #section-thanhvien h2 {
+        font-size: 32px;
+    }
+
+    .features-container {
+        padding: 2.5rem 2.5rem;
+    }
+
+    .features-row-bottom {
+        margin-top: -1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* HERO */
+    .hero {
+        min-height: 40vh;
+        background-position: center center;
+    }
+
+
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    /* Nội dung chính */
+    .content-wrapper {
+        padding: 3.5rem 0 5rem;
+    }
+
+    .content-inner {
+        padding: 0 1.25rem;
+        gap: 3rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+        text-align: left;
+    }
+
+    .section-text {
+        max-width: 100%;
+        margin: 0;
+        text-align: left;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .grid-2 {
+        gap: 1.5rem;
+    }
+
+    .card {
+        padding: 20px 18px 20px;
+    }
+
+    .card-title {
+        font-size: 1.05rem;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+    /* CORE VALUES – HEXAGON */
+    .features-container {
+        padding: 2.5rem 1.25rem;
+    }
+
+    .features-row {
+        gap: 1.75rem;
+    }
+
+    .feature-card {
+        width: 260px;
+        height: 300px;
+        padding: 24px;
+    }
+
+    .main_heading {
+        font-size: 1.5rem;
+    }
+
+    /* TEAM */
+    #section-thanhvien {
+        padding: 0 1.25rem 60px;
+    }
+
+    #section-thanhvien h2 {
+        font-size: 30px;
+        margin: 40px 0 32px;
+    }
+
+    .member-fixed {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .member-card {
+        width: 230px;
+    }
+
+    .member-info h4 {
+        font-size: 16px;
+    }
+
+    .member-info p {
+        font-size: 13px;
+    }
+
+    /* CTA cuối trang */
+    .cta {
+        margin: 3rem 1.25rem 0;
+        padding: 2rem 1.5rem;
+        border-radius: 18px;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .cta-title {
+        font-size: 1.6rem;
+    }
+
+    .cta-text {
+        font-size: 0.95rem;
+    }
+
+    .btn-cta.btn-outline {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .hero {
+        min-height: 32vh;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+
+    .section-text {
+        font-size: 0.9rem;
+    }
+
+    .feature-card {
+        width: 240px;
+        height: 280px;
+        padding: 20px;
+    }
+
+    #section-thanhvien h2 {
+        font-size: 26px;
+    }
+
+    .carousel-wrapper {
+        padding-bottom: 6px;
+    }
+
+    .cta {
+        margin: 2.5rem 1rem 0;
+        padding: 1.75rem 1.25rem;
+    }
+
+    .cta-title {
+        font-size: 1.45rem;
+    }
+
+    .cta-text {
+        font-size: 0.9rem;
+    }
 }
