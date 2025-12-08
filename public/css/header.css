@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: space-between;
     white-space: nowrap;
-
+    gap: 1rem;
     padding: 0.75rem 1.5rem;
     border-bottom: 1px solid #222f49;
     background-color: rgba(0, 0, 0, 0.6);
