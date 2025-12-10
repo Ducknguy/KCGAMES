@@ -66,7 +66,7 @@ async function loadActivities() {
         document.querySelectorAll(".activity-item").forEach((card) => {
             card.addEventListener("click", () => {
                 const id = card.getAttribute("data-id");
-                window.location.href = `/public/activities/detail.html?id=${encodeURIComponent(
+                window.location.href = `/detail?id=${encodeURIComponent(
                     id
                 )}`;
             });

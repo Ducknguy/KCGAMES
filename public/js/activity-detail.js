@@ -44,7 +44,7 @@ async function loadActivityDetail() {
         if (currentIndex > 0) {
             const prevId = data[currentIndex - 1].id;
             prevBtn.onclick = () => {
-                window.location.href = `/public/activities/detail.html?id=${encodeURIComponent(prevId)}`;
+                window.location.href = `/detail?id=${encodeURIComponent(prevId)}`;
             };
         } else {
             prevBtn.disabled = true;
@@ -54,7 +54,7 @@ async function loadActivityDetail() {
         if (currentIndex < data.length - 1) {
             const nextId = data[currentIndex + 1].id;
             nextBtn.onclick = () => {
-                window.location.href = `/public/activities/detail.html?id=${encodeURIComponent(nextId)}`;
+                window.location.href = `/detail?id=${encodeURIComponent(nextId)}`;
             };
         } else {
             nextBtn.disabled = true;

@@ -179,6 +179,9 @@ app.get('/marketing', (req, res) => {
 app.get('/apply', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'apply-form.html'));
 });
+app.get('/detail', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'activities', 'detail.html'));
+});
 
 
 
